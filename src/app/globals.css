@@ -1,0 +1,113 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+/*@import "shadcn/tailwind.css";*/
+
+/* =====================================================
+   DESIGN TOKENS
+   Forte System Design System
+===================================================== */
+
+@theme {
+  /* ========== COLORS ========== */
+  --color-primary: #0052cc;
+  --color-primary-hover: #0047b3;
+  --color-primary-active: #003d99;
+
+  --color-secondary: #3b82f6;
+
+  --color-background: #ffffff;
+  --color-surface: #f8fafc;
+
+  --color-card: #ffffff;
+
+  --color-border: #e5e7eb;
+
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-text-tertiary: #9ca3af;
+
+  --color-success: #16a34a;
+  --color-warning: #f59e0b;
+  --color-error: #dc2626;
+
+  /* ========== TYPOGRAPHY ========== */
+  --font-sans: var(--font-geist-sans), Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 32px;
+  --text-4xl: 40px;
+  --text-5xl: 52px;
+  --text-6xl: 64px;
+
+  /* ========== BORDER RADIUS ========== */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* ========== SHADOWS ========== */
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.12);
+  --shadow-lg: 0 16px 48px rgba(15, 23, 42, 0.16);
+
+  /* glass effect */
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.08);
+
+  /* ========== SPACING ========== */
+  --spacing-section-sm: 64px;
+  --spacing-section-md: 96px;
+  --spacing-section-lg: 128px;
+
+  /* ========== ANIMATION ========== */
+  --transition-fast: 150ms;
+  --transition-base: 250ms;
+  --transition-slow: 400ms;
+}
+
+/* ========== LIGHT THEME ========== */
+
+:root {
+  --background: #ffffff;
+  --foreground: #111827;
+}
+
+/* ========== DARK THEME ========== */
+
+.dark {
+  --background: #0b1120;
+  --foreground: #f9fafb;
+  --color-background: #0b1120;
+  --color-surface: #111827;
+  --color-card: #111827;
+  --color-border: #1f2937;
+  --color-text-primary: #f9fafb;
+  --color-text-secondary: #d1d5db;
+  --color-text-tertiary: #9ca3af;
+}
+
+/* ========== BASE STYLES ========== */
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-geist-sans);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}

@@ -11,7 +11,7 @@ const buttonVariants = cva(
   justify-center
   gap-2
   whitespace-nowrap
-  rounded-lg
+  rounded-full
   text-sm
   font-medium
   transition-all
@@ -25,6 +25,8 @@ const buttonVariants = cva(
   focus-visible:ring-primary
   focus-visible:ring-offset-2
 
+  hover:cursor-pointer
+
   [&_svg]:pointer-events-none
   [&_svg]:size-4
   [&_svg]:shrink-0
@@ -34,9 +36,10 @@ const buttonVariants = cva(
       variant: {
         /* Основная кнопка Forte System */
 
-        default: ` 
-          bg-primary 
-          text-white 
+        default: `
+          bg-primary
+          text-white
+          font-light
           shadow-sm
           hover:bg-primary-hover
           active:bg-primary-active
@@ -55,8 +58,8 @@ const buttonVariants = cva(
         /* Контурная */
 
         outline: `
-          border 
-          border-border 
+          border
+          border-border
           bg-transparent
           text-text-primary
           hover:bg-surface
@@ -73,17 +76,28 @@ const buttonVariants = cva(
 
         glass: `
           border
-          border-white/20 
+          border-white/20
           bg-white/10
 
-          text-text-primary
+          text-primary
+          font-normal
 
           backdrop-blur-xl
 
           shadow-glass
 
-          hover:bg-white/20
+          hover:bg-white/60
           `,
+
+        glassBlue: `
+          relative
+          text-white
+          text-unbounded
+          bg-primary
+
+          backdrop-saturate-180%
+
+        `,
 
         /*
         Темная
@@ -101,13 +115,22 @@ const buttonVariants = cva(
         sm: `
           h-9
           px-3
-          rounded-md
           `,
 
         default: `
           h-11
           px-5
           `,
+
+        md: `
+          h-10
+
+          px-5
+          py-12px
+          font-unbounded
+
+          tracking-wider
+        `,
 
         lg: `
           h-12

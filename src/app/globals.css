@@ -22,29 +22,30 @@
 
   --color-border: #e5e7eb;
 
-  --color-text-primary: #111827;
+  --color-text-primary: rgb(38, 35, 35);
   --color-text-secondary: #6b7280;
   --color-text-tertiary: #9ca3af;
 
-  --color-success: #16a34a;
+  --color-success: #30cb2b;
   --color-warning: #f59e0b;
-  --color-error: #dc2626;
+  --color-error: #cb1e1e;
 
   /* ========== TYPOGRAPHY ========== */
-  --font-sans: var(--font-geist-sans), Arial, sans-serif;
-  --font-mono: var(--font-geist-mono), monospace;
+  --font-sans: var(--font-manrope), Arial, sans-serif;
+  --font-heading: var(--font-unbounded), Arial, sans-serif;
+  --font-unbounded: var(--font-unbounded), Arial, sans-serif;
 
-  --text-xs: 12px;
+  --text-xs: 13px;
   --text-sm: 14px;
-  --text-base: 16px;
-  --text-lg: 18px;
+  --text-base: 15px;
+  --text-lg: 17px;
 
   --text-xl: 20px;
   --text-2xl: 24px;
-  --text-3xl: 32px;
+  --text-3xl: 28px;
   --text-4xl: 40px;
-  --text-5xl: 52px;
-  --text-6xl: 64px;
+  --text-5xl: 42px;
+  --text-6xl: 54px;
 
   /* ========== BORDER RADIUS ========== */
   --radius-sm: 8px;
@@ -71,13 +72,20 @@
   --transition-fast: 150ms;
   --transition-base: 250ms;
   --transition-slow: 400ms;
+
+  --animate-marquee: marquee 50s linear infinite;
+
+  --shadow-soft: -4px 0 12px rgba(77, 154, 255, 0.08), 0 2px 10px rgba(77, 154, 255, 0.08);
+  --shadow-soft-hover: -4px 0 10px rgba(77, 154, 255, 0.12), 0 12px 32px rgba(77, 154, 255, 0.14);
+
+  --background-dark: #1e2025;
 }
 
 /* ========== LIGHT THEME ========== */
 
 :root {
   --background: #ffffff;
-  --foreground: #111827;
+  --foreground: rgb(38, 35, 35);
 }
 
 /* ========== DARK THEME ========== */
@@ -85,7 +93,7 @@
 .dark {
   --background: #0b1120;
   --foreground: #f9fafb;
-  --color-background: #0b1120;
+  --color-background: #1e2025;
   --color-surface: #111827;
   --color-card: #111827;
   --color-border: #1f2937;
@@ -96,18 +104,257 @@
 
 /* ========== BASE STYLES ========== */
 
+/*.glass a {*/
+/*  color: #404040;*/
+/*  text-decoration: none;*/
+/*  font-size: 22px;*/
+/*  font-weight: 600;*/
+/*  transition: .25s;*/
+/*}*/
+
+/*.glass a:hover {*/
+/*  color: #0052CC;*/
+/*}*/
+
+/*.glass {*/
+/*  position: relative;*/
+/*}*/
+
+/*.glass::after {*/
+/*  content: "";*/
+/*  position: absolute;*/
+/*  inset: 0;*/
+/*  border-radius: inherit;*/
+/*  padding: 1px;*/
+
+/*  background: linear-gradient(*/
+/*    180deg,*/
+/*    rgba(255,255,255,.8),*/
+/*    rgba(255,255,255,.15)*/
+/*  );*/
+
+/*  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);*/
+
+/*  -webkit-mask-composite: xor;*/
+/*  mask-composite: exclude;*/
+
+/*  opacity: .7;*/
+/*  pointer-events: none;*/
+/*}*/
+
+.glass {
+  position: relative;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 -1px rgb(255 255 255 / 8%),
+    0 12px 32px rgb(0 0 0 / 4%);
+
+  /*box-shadow:*/
+  /*  inset 0 1px rgba(255,255,255,.4),*/
+  /*  inset 0 -1px rgba(255,255,255,.05),*/
+  /*  0 12px 32px rgba(0,0,0,.08);*/
+
+  border-radius: 999px;
+}
+
+.glass::after {
+  content: '';
+  position: absolute;
+
+  left: 4%;
+  right: 4%;
+  top: 2px;
+  height: 40%;
+
+  border-radius: 999px;
+
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0));
+
+  filter: blur(8px);
+  opacity: 0.8;
+
+  pointer-events: none;
+}
+
+.glass-blue {
+  position: relative;
+
+  background: #0052cc;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+
+  /*box-shadow:*/
+  /*  inset 0 1px rgba(255, 255, 255, .04),*/
+  /*  inset 0 -1px rgb(255 255 255 / 8%),*/
+  /*  0 12px 32px rgb(0 0 0 / 4%);*/
+
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.4),
+    inset 0 -1px rgba(255, 255, 255, 0.05),
+    0 12px 32px rgba(0, 0, 0, 0.08);
+
+  border-radius: 999px;
+}
+
+.glass-blue::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  top: -1px;
+
+  border-radius: inherit;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  pointer-events: none;
+}
+
+.glass-blue::after {
+  content: '';
+  position: absolute;
+
+  left: 4%;
+  right: 4%;
+  top: 0;
+  height: 40%;
+
+  border-radius: 999px;
+
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0));
+
+  filter: blur(8px);
+  opacity: 0.48;
+
+  pointer-events: none;
+}
+
 @layer base {
   * {
     @apply border-border;
+    line-height: var(--leading-snug);
   }
 
   body {
     background: var(--background);
     color: var(--foreground);
-    font-family: var(--font-geist-sans);
+    font-family: var(--font-manrope);
+    letter-spacing: 0.4px;
   }
 
   html {
     scroll-behavior: smooth;
   }
+
+  .text-xsm {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .font-heading {
+    font-family: var(--font-heading);
+    line-height: var(--leading-snug);
+  }
+
+  .e222background {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at top, #d7e8ff 0%, transparent 35%),
+      radial-gradient(circle at bottom right, #dce9ff 0%, transparent 30%),
+      linear-gradient(#ffffff, #f6f9fd);
+    z-index: -1;
+    opacity: 0.8;
+  }
+
+  .partner-logo {
+    height: 50px;
+  }
+}
+
+.animated-box {
+  /* привязываем анимацию к скроллу */
+  animation-name: scroll-effect;
+  animation-fill-mode: both;
+  animation-timing-function: linear;
+
+  /* анимации длиться от 0px до 800px прокрутки */
+  animation-timeline: scroll(root);
+  animation-range: 40px 600px;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-effect {
+  30% {
+    background: none;
+  }
+  60% {
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.27);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+    /*'nav' {*/
+    /*  padding: 20px;*/
+    /*}*/
+  }
+  100% {
+    backdrop-filter: blur(10px);
+    background: #ffffff9e;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /*'nav' {*/
+    /*  padding: 16px;*/
+    /*}*/
+  }
+}
+
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(120, 130, 150, 0.18);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(120, 130, 150, 0.35);
+  background-clip: padding-box;
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(120, 130, 150, 0.35) transparent;
 }

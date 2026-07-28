@@ -18,10 +18,10 @@ export const typography = {
     lg: '18px',
     xl: '20px',
     '2xl': '24px',
-    '3xl': '32px',
+    '3xl': '28px',
     '4xl': '40px',
-    '5xl': '52px',
-    '6xl': '64px',
+    '5xl': '45px',
+    '6xl': '54px',
   },
 
   lineHeight: {

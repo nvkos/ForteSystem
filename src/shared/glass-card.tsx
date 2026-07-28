@@ -11,12 +11,14 @@ export function GlassCard({ children, className }: GlassCardProps) {
     <div
       className={cn(
         `
-        rounded-xl
+        flex-column
+        rounded-md
         border
-        border-border
+        border-border/50
         bg-white/70
         backdrop-blur-xl
-        shadow-glass
+        shadow-soft
+        hover:shadow-soft-hover
         `,
         className,
       )}

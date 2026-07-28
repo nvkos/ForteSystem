@@ -1,20 +1,18 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono, Inter } from 'next/font/google';
+import { Unbounded, Manrope } from 'next/font/google';
 import './globals.css';
-import { cn } from '@/lib/utils';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+const manrope = Manrope({
+  subsets: ['latin', 'cyrillic'],
+  variable: '--font-manrope',
+  display: 'swap',
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const unbounded = Unbounded({
+  subsets: ['latin', 'cyrillic'],
+  variable: '--font-unbounded',
+  display: 'swap',
 });
-
 export const metadata: Metadata = {
   title: 'Forte System',
   description: 'Серверные решения для надежной инфраструктуры',
@@ -26,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn('font-sans', inter.variable)}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+    <html lang="ru" className={`${manrope.variable} ${unbounded.variable}`}>
+      <body className={`antialiased`}>{children}</body>
     </html>
   );
 }

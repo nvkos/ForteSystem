@@ -4,37 +4,30 @@ import { ReactNode } from 'react';
 interface HeadingProps {
   children: ReactNode;
   description?: string;
-  className?: string;
+  wrapClassName?: string;
+  hClassName?: string;
+  pClassName?: string;
   align?: 'left' | 'center';
 }
 
-export function Heading({ children, description, className, align = 'left' }: HeadingProps) {
+export function Heading({
+  children,
+  description,
+  wrapClassName,
+  hClassName,
+  pClassName,
+  align = 'left',
+}: HeadingProps) {
   return (
-    <div className={cn('space-y-4', align === 'center' && 'text-center', className)}>
+    <div className={cn('space-y-3', align === 'center' && 'text-center', wrapClassName)}>
       <h2
-        className="
-          text-3xl
-          font-semibold
-          tracking-tight
-          text-text-primary
-          md:text-4xl
-          lg:text-5xl
-        "
+        className={`font-heading leading-snug text-md font-medium tracking-wide text-text-primary md:text-xl lg:text-3xl ${hClassName}`}
       >
         {children}
       </h2>
 
       {description && (
-        <p
-          className="
-          max-w-2xl
-          text-base
-          text-text-secondary
-          md:text-lg
-        "
-        >
-          {description}
-        </p>
+        <p className={'text-basetext-text-secondarymd:text-lg ' + pClassName}>{description}</p>
       )}
     </div>
   );

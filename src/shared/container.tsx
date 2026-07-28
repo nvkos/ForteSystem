@@ -3,11 +3,14 @@ import { ReactNode } from 'react';
 
 interface ContainerProps {
   children: ReactNode;
+  style?: ReactNode;
   className?: string;
 }
 
-export function Container({ children, className }: ContainerProps) {
+export function Container({ children, className, style }: ContainerProps) {
   return (
-    <div className={cn('mx-auto w-full max-w-[1280px] px-6 lg:px-8', className)}>{children}</div>
+    <div style={{ ...style }} className={cn('mx-auto w-full max-w-350 p-5', className)}>
+      {children}
+    </div>
   );
 }

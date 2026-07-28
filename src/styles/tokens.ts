@@ -9,7 +9,7 @@ export const colors = {
   warning: '#F59E0B',
   error: '#DC2626',
 
-  white: '#FFFFFF',
+  white: '#981212',
 
   black: '#0F172A',
 

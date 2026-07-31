@@ -17,10 +17,10 @@ export function HowWeWork() {
 
         <div className="relative mt-13 min-h-12">
           <Image
-            className="absolute left-[1.7%] top-[18px] w-[calc(100%-20px)] h-[312px] pointer-events-none select-none"
-            src={lineSVG.src}
+            className="absolute left-[1.7%] top-[18px] w-[calc(100%-40px)] h-[312px] pointer-events-none select-none"
+            src={lineSVG}
             alt=""
-            width={'1360'}
+            width={1360}
             height={460}
             aria-hidden="true"
           />

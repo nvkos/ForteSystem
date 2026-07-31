@@ -29,7 +29,7 @@ export function Hero() {
     <>
       <div className="e222background"></div>
       <div className="topbar bg-white text-xsm font-heading font-light">
-        <div className="max-w-350 min-h-10 mx-auto py-2 px-8 flex flex-row justify-between items-center gap-2">
+        <div className="max-w-350 min-h-10 mx-auto py-2 px-10 flex flex-row justify-between items-center gap-2">
           <div className="topbar__left flex flex-row items-center gap-10">
             <p>ООО «Форте Систем»</p>
             <p className="topbar__address flex flex-row items-center gap-3" aria-label="Адрес">
@@ -49,10 +49,12 @@ export function Hero() {
           </div>
         </div>
       </div>
-      <header className={`sticky top-0 z-100 transition animated-box duration-300 easy`}>
+      <header
+        className={`sticky top-0 z-1000 w-full transition animated-box duration-300 easy site-header`}
+      >
         <nav
           aria-label="Global"
-          className="mx-auto flex max-w-350 items-center justify-between p-5 px-0 sm:px-5"
+          className="mx-auto flex max-w-350 items-center justify-between py-5 px-10 px-0 xs:px-7"
         >
           <div className="flex lg:flex-1">
             <a href="#" className="">
@@ -63,13 +65,13 @@ export function Hero() {
             </a>
           </div>
           <div className={'glass flex flex-row py-2 px-6 gap-4'}>
-            <a href="#" className="block text-sm/6 font-semibold hover:text-primary">
-              Продукты
-            </a>
-            <a href="#" className="block text-sm/6 font-semibold hover:text-primary">
+            <a href="#about-us" className="block text-sm/6 font-semibold hover:text-primary">
               О компании
             </a>
-            <a href="#" className="block text-sm/6 font-semibold hover:text-primary">
+            <a href="#products" className="block text-sm/6 font-semibold hover:text-primary">
+              Продукты
+            </a>
+            <a href="#contact-with-us" className="block text-sm/6 font-semibold hover:text-primary">
               Контакты
             </a>
           </div>
@@ -88,7 +90,7 @@ export function Hero() {
           style={{ backgroundImage: `url(${heroBack.src})` }}
         />
 
-        <Container className={`max-w-350 p-5 grow-1 flex flex-row items-end`}>
+        <Container className={`grow-1 flex flex-row items-end`}>
           <div
             className={`w-full`}
             // className="grid items-center gap-12 lg:grid-cols-2"
@@ -133,17 +135,20 @@ export function Hero() {
               </p>
 
               <div className="flex flex-wrap gap-8">
-                <Button size="md" variant={'default'} className={'py-22px px-6'}>
-                  Связаться с нами
-                </Button>
+                <a href="#contact-with-us">
+                  <Button size="md" variant={'default'} className={'py-22px px-6'}>
+                    Связаться с нами
+                  </Button>
+                </a>
 
                 <Button variant="glass" size="md" className={' py-22px px-6'}>
                   Каталог решений
                 </Button>
               </div>
             </div>
-            <div className="flex justify-between items-center gap-5 pt-25 pb-11">
+            <div className="flex justify-between items-center gap-5 pt-25 pb-6">
               <BrandsMarquee />
+              <div id={'about-us'} className={'self-end mb-11'} />
             </div>
 
             {/* RIGHT */}

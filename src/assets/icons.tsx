@@ -3,6 +3,7 @@ import React from 'react';
 // interface IconsProps extends React.SVGProps<SVGSVGElement> {}
 interface IconsProps {
   type: string;
+  size?: number;
 }
 
 export default function Icons(props: IconsProps) {

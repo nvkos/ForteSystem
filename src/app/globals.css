@@ -358,3 +358,16 @@ html {
   scrollbar-width: thin;
   scrollbar-color: rgba(120, 130, 150, 0.35) transparent;
 }
+
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 767px) {
+    .site-header {
+      /*
+       * Header начинается прямо от верхней границы экрана.
+       * Safe area становится частью самого header.
+       */
+      padding-top: env(safe-area-inset-top);
+      background: white;
+    }
+  }
+}

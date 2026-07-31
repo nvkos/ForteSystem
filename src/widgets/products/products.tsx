@@ -5,7 +5,7 @@ import { ProductCard } from './product-card';
 
 export function Product() {
   return (
-    <Section className={'py-16 lg:py-18 bg-indigo-50/50'} id={'products'}>
+    <Section className={'py-16 lg:py-18 bg-indigo-50/50'}>
       <Container>
         <Heading description="Поставляем оборудование ведущих мировых производителей.">
           Оборудование и решения

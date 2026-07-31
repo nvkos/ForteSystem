@@ -2,11 +2,13 @@ import { ReactNode } from 'react';
 
 import { GlassCard } from '@/shared';
 import { LucideServer, Network, Database, Cpu, CodeXml, ShieldCheck } from 'lucide-react';
+type ProductItem = 'server' | 'network' | 'added' | 'programs' | 'satefy' | 'storage';
 
 interface PartnerCardProps {
-  icon: ReactNode;
+  icon?: ReactNode;
   title: string;
   description: string;
+  item: ProductItem;
 }
 
 export function ProductCard({ title, description, item }: PartnerCardProps) {

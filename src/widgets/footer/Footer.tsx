@@ -4,7 +4,7 @@ import ShortLogo from '@/assets/logo/short-logo';
 export function Footer() {
   return (
     <Section
-      className={'py-4 lg:py-4 bg-text-primary relative overflow-hidden text-white/70 text-xs'}
+      className={'py-0 lg:py-0 bg-text-primary relative overflow-hidden text-white/70 text-xs'}
     >
       {/*<div className={'absolute w-70 h-70 bg-white/5 rounded-full -bottom-20 -left-10'}/>*/}
       {/*<div className={'absolute w-100 h-100 bg-white/5 rounded-full -top-20 -right-10'}/>*/}
@@ -13,7 +13,7 @@ export function Footer() {
         <div className="flex justify-between items-center">
           <div className={'flex items-center'}>
             <div className="w-auto opacity-70 mr-6">
-              <ShortLogo size={20} />
+              <ShortLogo />
             </div>
             <div>
               <p className={'mb-1'}>Общество с ограниченой ответственностью Форте Систем </p>

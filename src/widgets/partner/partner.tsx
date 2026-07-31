@@ -48,6 +48,7 @@ export function Partner() {
             description="Практический опыт внедрения и поставки инфраструктурных решений различного масштаба."
           />
         </div>
+        <div id={'products'} />
       </Container>
     </Section>
   );

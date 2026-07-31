@@ -29,11 +29,17 @@ export function MakeRequest() {
           </div>
 
           <div className={'flex gap-7'}>
-            <Button size="md" variant={'default'} className={'py-22px px-6'}>
-              Оставить заявку
-            </Button>
+            <a href="#contact-with-us">
+              <Button size="md" variant={'default'} className={'py-22px px-6 '}>
+                Оставить заявку
+              </Button>
+            </a>
 
-            <Button variant="glass" size="md" className={'py-22px px-6 bg-white/0 text-white'}>
+            <Button
+              variant="glass"
+              size="md"
+              className={'py-22px px-6 bg-white/0 text-white glass'}
+            >
               +375 44 719-18-24
             </Button>
           </div>

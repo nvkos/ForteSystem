@@ -1,4 +1,16 @@
-export function StepItem({ header, desc, left, top, number }) {
+export function StepItem({
+  header,
+  desc,
+  left,
+  top,
+  number,
+}: {
+  header: string;
+  desc: string;
+  left: number;
+  top: number;
+  number: number;
+}) {
   return (
     <li
       className={`stages-map__item absolute`}

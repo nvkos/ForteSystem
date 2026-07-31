@@ -1,21 +1,19 @@
-import type { Metadata } from 'next';
-import { Unbounded, Manrope } from 'next/font/google';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import { unbounded, manrope } from '@/lib/fonts';
 
-const manrope = Manrope({
-  subsets: ['latin', 'cyrillic'],
-  variable: '--font-manrope',
-  display: 'swap',
-});
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
 
-const unbounded = Unbounded({
-  subsets: ['latin', 'cyrillic'],
-  variable: '--font-unbounded',
-  display: 'swap',
-});
 export const metadata: Metadata = {
   title: 'Forte System',
   description: 'Серверные решения для надежной инфраструктуры',
+  icons: {
+    icon: '/ForteSystem/favicon.ico',
+  },
 };
 
 export default function RootLayout({
@@ -25,7 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" className={`${manrope.variable} ${unbounded.variable}`}>
-      <body className={`antialiased`}>{children}</body>
+      <body
+      // className={`antialiased`}
+      >
+        {children}
+      </body>
     </html>
   );
 }

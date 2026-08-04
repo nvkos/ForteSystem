@@ -3,16 +3,16 @@ import { Button } from '@/components/ui/button';
 
 export function MakeRequest() {
   return (
-    <Section className={'py-16 lg:py-18 bg-blue-600 relative overflow-hidden'}>
+    <Section className={'py-16 lg:py-18 relative overflow-hidden blue_bg'}>
       <div className={'absolute w-70 h-70 bg-white/5 rounded-full -bottom-20 -left-10'} />
       <div className={'absolute w-100 h-100 bg-white/5 rounded-full -top-20 -right-10'} />
 
       <Container>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center relative">
           <div className={'max-w-140'}>
             <div
               className={
-                'glass w-fit py-2 px-4 text-white text-xs font-medium mb-5 flex items-center gap-2 leading-none'
+                'glass_on_blue bg-repeat-round w-fit py-2.5 px-4 text-white text-xs font-medium mb-5 flex items-center gap-2 leading-none'
               }
             >
               <div className={'bg-white w-2 h-2 rounded-full'} />
@@ -30,15 +30,19 @@ export function MakeRequest() {
 
           <div className={'flex gap-7'}>
             <a href="#contact-with-us">
-              <Button size="md" variant={'default'} className={'py-22px px-6 '}>
+              <Button
+                className={
+                  'font-unbounded tracking-wider font-normal h-10 py-22px px-24px bg-white/85 hover:bg-white text-primary'
+                }
+              >
                 Оставить заявку
               </Button>
             </a>
 
             <Button
-              variant="glass"
-              size="md"
-              className={'py-22px px-6 bg-white/0 text-white glass'}
+              className={
+                'py-22px px-34px text-white big-glass_on_blue font-unbounded tracking-wider'
+              }
             >
               +375 44 719-18-24
             </Button>

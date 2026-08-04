@@ -21,7 +21,8 @@ export function StepItem({
               stages-map__badge grid place-items-center
               w-10 h-10 rounded-full mb-2.5
               font-unbounded text-[16px] font-semibold text-white leading-none
-              bg-primary
+              bg-[#3B82F6]
+              steps_blue_bg
             "
         aria-hidden="true"
       >

@@ -183,6 +183,39 @@
   pointer-events: none;
 }
 
+.glass_on_blue {
+  background-image: url('./../assets/glass_on_blue.png');
+  background-size: cover;
+}
+
+.big-glass_on_blue {
+  background-image: url('./../assets/big-glass_on_blue.png');
+  background-size: cover;
+  padding: 0 24px;
+  border: 1px solid #ffffff00;
+  height: 40px;
+}
+
+.big-glass_on_blue:hover {
+  background-image: url('./../assets/big_glass_on_blue_hover.png');
+
+  /*border: none;*/
+  border: 1px solid #ffffff78;
+}
+
+.blue_bg {
+  background: linear-gradient(135deg, #0052cc 0%, #1d4ed8 100%);
+  border: none;
+}
+
+.steps_blue_bg {
+  background-image: url('./../assets/steps_blue_bg.png');
+  background-size: cover;
+  /*padding: 0 24px;*/
+  /*border: 1px solid #ffffff00;*/
+  /*height: 40px;*/
+}
+
 .glass-blue {
   position: relative;
 

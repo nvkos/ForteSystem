@@ -141,9 +141,11 @@ export function Hero() {
                   </Button>
                 </a>
 
-                <Button variant="glass" size="md" className={' py-22px px-6'}>
-                  Каталог решений
-                </Button>
+                <a href="#products">
+                  <Button variant="glass" size="md" className={' py-22px px-6'}>
+                    Каталог решений
+                  </Button>
+                </a>
               </div>
             </div>
             <div className="flex justify-between items-center gap-5 pt-25 pb-6">

@@ -8,27 +8,14 @@ export function InputContacts({ label, name, type = 'text' }: Props) {
   return (
     <label className="block">
       <div className="pointer-events-none absolute -top-20 right-10 h-60 w-60 rounded-full bg-white/40 blur-[120px]" />
-      <div className="pointer-events-none absolute -bottom-20 left-20 h-72 w-72 rounded-full bg-primary/30 blur-[140px]" />
 
-      <span
-        className="
-          mb-3
-          block
-          text-[15px]
-          text-slate-500
-        "
-      >
-        {label}
-      </span>
+      <span className=" mb-3 block text-[15px] text-slate-500">{label}</span>
 
       <input
         name={name}
         type={type}
         className="
-          w-full
-          border-0
-          border-b
-          border-slate-300
+          w-full border-0 border-b border-slate-300
           bg-transparent
           pb-3
           outline-none

@@ -17,7 +17,7 @@ export const typography = {
     base: '16px',
     lg: '18px',
     xl: '20px',
-    '2xl': '24px',
+    '2xl': '22px',
     '3xl': '28px',
     '4xl': '40px',
     '5xl': '45px',

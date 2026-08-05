@@ -22,9 +22,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className={`${manrope.variable} ${unbounded.variable}`}>
+    <html
+      lang="ru"
+      className={`${manrope.variable} ${unbounded.variable}`}
+      suppressHydrationWarning
+    >
       <body
-      // className={`antialiased`}
+        suppressHydrationWarning
+        // className={`antialiased`}
       >
         {children}
       </body>

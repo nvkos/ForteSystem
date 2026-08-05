@@ -9,7 +9,7 @@ export function StepItem({
   desc: string;
   left: number;
   top: number;
-  number: number;
+  number: string;
 }) {
   return (
     <li
@@ -26,7 +26,7 @@ export function StepItem({
             "
         aria-hidden="true"
       >
-        0{number}
+        {number}
       </span>
       <h3 className={'font-unbounded text-[15px] text-white font-medium mb-1'}>{header}</h3>
       <p className={'text-[13px] text-white/75'}>{desc}</p>

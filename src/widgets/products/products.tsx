@@ -5,13 +5,13 @@ import { ProductCard } from './product-card';
 
 export function Product() {
   return (
-    <Section className={'py-16 lg:py-18 bg-indigo-50/50'}>
+    <Section className={'py-12 sm:py-16 lg:py-18 bg-indigo-50/50'}>
       <Container>
         <Heading description="Поставляем оборудование ведущих мировых производителей.">
           Оборудование и решения
         </Heading>
 
-        <div className="mt-10 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-8 sm:mt-10 grid gap-5 sm:gap-8 md:grid-cols-2 xl:grid-cols-3">
           <ProductCard
             item={'server'}
             title="Серверы"

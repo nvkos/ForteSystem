@@ -75,10 +75,10 @@ export function ContactForm() {
 
         <button
           className="
-          mt-12 h-16 w-full
-          rounded-2xl bg-primary
-          text-lg font-semibold text-white transition-all duration-300
-          hover:scale-[1.01] hover:shadow-[0_20px_60px_rgba(0,82,204,.45)] active:scale-[.99]
+          mt-12 h-10 w-full bg-white text-primary
+          rounded-2xl
+          text-lg font-medium transition-all duration-300
+          hover:scale-[1.01] hover:shadow-[0_20px_60px_rgba(0,82,204,.45)] hover:bg-primary hover:text-white active:scale-[.99]
         "
         >
           Отправить заявку

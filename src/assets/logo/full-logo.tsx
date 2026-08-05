@@ -1,13 +1,15 @@
+'use client';
 import React from 'react';
 
-interface FullLogoProps extends React.SVGProps<SVGSVGElement> {
-  size: number;
-}
-export default function FullLogo(props: FullLogoProps) {
+// interface FullLogoProps extends React.SVGProps<SVGSVGElement> {
+//   size: number;
+// }
+export default function FullLogo() {
   return (
     <svg
-      width="auto"
-      height={props.size}
+      className={'h-10 md:h-[50px]'}
+      // width="auto"
+      // height={props.size}
       viewBox="0 0 628 171"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

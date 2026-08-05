@@ -2,12 +2,33 @@
 @import 'tw-animate-css';
 /*@import "shadcn/tailwind.css";*/
 
+/*
+  globals.css
+  ├── цвета Forte System
+  ├── тени Forte System
+  ├── шрифты
+  ├── свои радиусы
+  └── дополнительные токены
+
+  без префикса → мобильный
+  sm: → от 640px
+  md: → от 768px
+  lg: → от 1024px
+  xl: → от 1280px
+  2xl: → от 1536px
+*/
+
 /* =====================================================
    DESIGN TOKENS
    Forte System Design System
 ===================================================== */
 
 @theme {
+  /* ========== BREAKPOINTS ========== */
+  --breakpoint-menu: 35rem; /* 560px */
+  --breakpoint-xxs: 360; /* 560px */
+  --breakpoint-xs: 420; /* 560px */
+
   /* ========== COLORS ========== */
   --color-primary: #0052cc;
   --color-primary-hover: #0047b3;
@@ -35,13 +56,14 @@
   --font-heading: var(--font-unbounded), Arial, sans-serif;
   --font-unbounded: var(--font-unbounded), Arial, sans-serif;
 
-  --text-xs: 13px;
+  --text-xxs: 10px;
+  --text-xs: 13.5px;
   --text-sm: 14px;
   --text-base: 15px;
   --text-lg: 17px;
 
   --text-xl: 20px;
-  --text-2xl: 24px;
+  --text-2xl: 22px;
   --text-3xl: 28px;
   --text-4xl: 40px;
   --text-5xl: 42px;
@@ -270,6 +292,30 @@
   pointer-events: none;
 }
 
+.site-header {
+  background: transparent;
+
+  -webkit-backdrop-filter: blur(0);
+  backdrop-filter: blur(0);
+
+  box-shadow: none;
+
+  transition:
+    background-color 300ms ease,
+    box-shadow 300ms ease,
+    -webkit-backdrop-filter 300ms ease,
+    backdrop-filter 300ms ease;
+}
+
+.site-header--scrolled {
+  background: rgba(255, 255, 255, 0.62);
+
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -281,10 +327,6 @@
     color: var(--foreground);
     font-family: var(--font-manrope);
     letter-spacing: 0.4px;
-  }
-
-  html {
-    scroll-behavior: smooth;
   }
 
   .text-xsm {
@@ -313,16 +355,16 @@
   }
 }
 
-.animated-box {
-  /* привязываем анимацию к скроллу */
-  animation-name: scroll-effect;
-  animation-fill-mode: both;
-  animation-timing-function: linear;
+/*.animated-box {*/
+/*  !* привязываем анимацию к скроллу *!*/
+/*  animation-name: scroll-effect;*/
+/*  animation-fill-mode: both;*/
+/*  animation-timing-function: linear;*/
 
-  /* анимации длиться от 0px до 800px прокрутки */
-  animation-timeline: scroll(root);
-  animation-range: 40px 600px;
-}
+/*  !* анимации длиться от 0px до 800px прокрутки *!*/
+/*  animation-timeline: scroll(root);*/
+/*  animation-range: 40px 600px;*/
+/*}*/
 
 @keyframes marquee {
   from {
@@ -334,27 +376,35 @@
   }
 }
 
-@keyframes scroll-effect {
-  30% {
-    background: none;
-  }
-  60% {
-    backdrop-filter: blur(5px);
-    background: rgba(255, 255, 255, 0.27);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
-    /*'nav' {*/
-    /*  padding: 20px;*/
-    /*}*/
-  }
-  100% {
-    backdrop-filter: blur(10px);
-    background: #ffffff9e;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /*'nav' {*/
-    /*  padding: 16px;*/
-    /*}*/
-  }
-}
+/*@keyframes scroll-effect {*/
+/*  0% {*/
+/*    background: transparent;*/
+/*    -webkit-backdrop-filter: blur(0);*/
+/*    backdrop-filter: blur(0);*/
+/*    box-shadow: none;*/
+/*  }*/
+
+/*  30% {*/
+/*    background: transparent;*/
+/*    -webkit-backdrop-filter: blur(0);*/
+/*    backdrop-filter: blur(0);*/
+/*    box-shadow: none;*/
+/*  }*/
+
+/*  60% {*/
+/*    background: rgba(255, 255, 255, 0.27);*/
+/*    -webkit-backdrop-filter: blur(5px);*/
+/*    backdrop-filter: blur(5px);*/
+/*    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);*/
+/*  }*/
+
+/*  100% {*/
+/*    background: rgba(255, 255, 255, 0.62);*/
+/*    -webkit-backdrop-filter: blur(10px);*/
+/*    backdrop-filter: blur(10px);*/
+/*    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
+/*  }*/
+/*}*/
 
 @keyframes ping {
   75%,
@@ -400,7 +450,7 @@ html {
        * Safe area становится частью самого header.
        */
       padding-top: env(safe-area-inset-top);
-      background: white;
+      /*background: white;*/
     }
   }
 }

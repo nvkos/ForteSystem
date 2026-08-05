@@ -123,7 +123,8 @@ const buttonVariants = cva(
           `,
 
         md: `
-          h-10
+          h-9
+          sm:h-10
 
           px-5
           py-12px

@@ -38,13 +38,15 @@ export function BrandsMarquee() {
             key={`${brand}-${index}`}
             className="
               flex
-              h-24
+              h-10
+              sm:h-24
               w-fit
               {/*min-w-[180px]*/}
               shrink-0
               items-center
               justify-center
-              px-8
+              px-4
+              sm:px-8
               mx-9
 
               {/*lg:min-w-[180px]*/}

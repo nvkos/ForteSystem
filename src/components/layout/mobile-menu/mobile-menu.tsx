@@ -52,7 +52,7 @@ export function MobileMenu() {
       <div className={'flex menu:hidden glass flex-row py-2 px-4 gap-3'}>
         <a
           href="#"
-          className="hidden xs:flex text-sm/6 font-semibold hover:text-primary text-black gap-1
+          className="hidden sm:flex text-sm/6 font-semibold hover:text-primary text-black gap-1
         items-center border-r-1 pr-3 border-neutral-800"
         >
           {/*<Icons type={'configuration'} size={12} color={'black'}/>*/}

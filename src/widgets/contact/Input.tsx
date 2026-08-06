@@ -1,26 +1,31 @@
+import { form } from 'framer-motion/m';
+import React from 'react';
+
 type Props = {
   label: string;
-  name: string;
+  name: keyof typeof form;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type?: string;
 };
 
-export function InputContacts({ label, name, type = 'text' }: Props) {
+export function InputContacts({ label, name, value, onChange, type = 'text' }: Props) {
   return (
     <label className="block">
-      <div className="pointer-events-none absolute -top-20 right-10 h-60 w-60 rounded-full bg-white/40 blur-[120px]" />
-
-      <span className=" mb-3 block text-[15px] text-slate-500">{label}</span>
+      <span className="mb-3 block text-sm md:text-[15px] text-slate-500">{label}</span>
 
       <input
         name={name}
+        value={value}
+        onChange={onChange}
         type={type}
         className="
           w-full border-0 border-b border-slate-300
           bg-transparent
-          pb-3
+          pb-2 md:pb-3
+          text-sm md:text-[15px]
           outline-none
           transition-all
-          placeholder:text-slate-400
           focus:border-primary
         "
       />

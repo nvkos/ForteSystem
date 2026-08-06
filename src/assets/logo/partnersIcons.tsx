@@ -18,6 +18,7 @@ export default function PartnersIcons({
           <svg
             width="120"
             height="50"
+            className={'h-9 sm:h-12'}
             viewBox="0 0 120 50"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -134,6 +135,7 @@ export default function PartnersIcons({
           <svg
             width="auto"
             height={size}
+            className={'h-9 sm:h-12'}
             viewBox="0 0 79 60"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -150,6 +152,7 @@ export default function PartnersIcons({
           <svg
             width="auto"
             height={size}
+            className={'h-9 sm:h-12'}
             viewBox="0 0 100 60"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -177,6 +180,7 @@ export default function PartnersIcons({
           <svg
             width="auto"
             height={size}
+            className={'h-9 sm:h-12'}
             viewBox="0 0 47 60"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -208,6 +212,7 @@ export default function PartnersIcons({
           <svg
             width="auto"
             height={size}
+            className={'h-9 sm:h-12'}
             viewBox="0 0 115 60"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -231,6 +236,7 @@ export default function PartnersIcons({
           <svg
             width="auto"
             height={size}
+            className={'h-9 sm:h-12'}
             viewBox="0 0 82 60"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -247,6 +253,7 @@ export default function PartnersIcons({
           <svg
             width="116"
             height="50"
+            className={'h-9 sm:h-12'}
             viewBox="0 0 116 50"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -267,6 +274,7 @@ export default function PartnersIcons({
           <svg
             width="auto"
             height={size}
+            className={'h-9 sm:h-12'}
             viewBox="0 0 96 60"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -289,6 +297,7 @@ export default function PartnersIcons({
           <svg
             width="auto"
             height={size}
+            className={'h-9 sm:h-12'}
             viewBox="0 0 105 60"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -326,6 +335,7 @@ export default function PartnersIcons({
           <svg
             width="auto"
             height={size}
+            className={'h-9 sm:h-12'}
             viewBox="0 0 90 60"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -357,6 +367,7 @@ export default function PartnersIcons({
           <svg
             width="auto"
             height={size}
+            className={'h-9 sm:h-12'}
             viewBox="0 0 106 60"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -380,8 +391,8 @@ export default function PartnersIcons({
             src={supermicroImg.src}
             height={50}
             width={87.5}
+            className={'h-9 sm:h-12'}
             alt={'supermicro image'}
-            className="partner-logo"
           />
         );
 
@@ -390,6 +401,7 @@ export default function PartnersIcons({
           <svg
             width="auto"
             height={size}
+            className={'h-9 sm:h-12'}
             viewBox="0 0 60 60"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -410,6 +422,7 @@ export default function PartnersIcons({
           <svg
             width="auto"
             height={size}
+            className={'h-9 sm:h-12'}
             viewBox="0 0 95 60"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -442,6 +455,7 @@ export default function PartnersIcons({
           <svg
             width={60}
             height={60}
+            className={'h-11 sm:h-14'}
             viewBox="0 0 60 60"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -454,7 +468,7 @@ export default function PartnersIcons({
             </g>
             <defs>
               <clipPath id="clip0_3578_26">
-                <rect width="60" height="60" fill="white" />
+                <rect width="60" height="60" className={'h-11 sm:14'} fill="white" />
               </clipPath>
             </defs>
           </svg>

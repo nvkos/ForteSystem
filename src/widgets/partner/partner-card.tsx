@@ -16,9 +16,11 @@ export function PartnerCard({ icon, title, description }: PartnerCardProps) {
       </div>
 
       <div>
-        <h3 className="mb-2 font-heading leading-snug text-base font-medium">{title}</h3>
+        <h3 className="mb-2 font-heading leading-snug text-sm font-medium sm:text-base">{title}</h3>
 
-        <p className="text-base leading-snug text-text-secondary text-justify">{description}</p>
+        <p className="text-sm sm:text-base leading-[1.25] text-text-secondary text-justify">
+          {description}
+        </p>
       </div>
     </GlassCard>
   );

@@ -29,7 +29,7 @@ export function MakeRequest() {
             </Heading>
           </div>
 
-          <div className={'flex gap-7 w-full sm:w-fit'}>
+          <div className={'flex flex-col sm:flex-row gap-4 sm:gap-7 w-full sm:w-fit'}>
             <a href="#contact-with-us" className={'grow-1 sm:grow-0'}>
               <Button
                 className={
@@ -42,7 +42,7 @@ export function MakeRequest() {
 
             <Button
               className={
-                'py-22px px-34px grow-1 sm:grow-0 text-white big-glass_on_blue font-unbounded tracking-wider'
+                'py-22px px-34px grow-1 sm:grow-0 text-white mobile_big-glass_on_blue sm:big-glass_on_blue font-unbounded tracking-wider'
               }
             >
               +375 44 719-18-24

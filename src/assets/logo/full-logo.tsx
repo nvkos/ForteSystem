@@ -7,7 +7,7 @@ import React from 'react';
 export default function FullLogo() {
   return (
     <svg
-      className={'h-10 md:h-[50px]'}
+      className={'h-11 md:h-[50px]'}
       // width="auto"
       // height={props.size}
       viewBox="0 0 628 171"

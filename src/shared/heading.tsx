@@ -21,13 +21,18 @@ export function Heading({
   return (
     <div className={cn('space-y-3', align === 'center' && 'text-center', wrapClassName)}>
       <h2
-        className={`font-heading leading-snug text-2xl font-medium tracking-wide text-text-primary md:text-2xl lg:text-3xl ${hClassName}`}
+        className={`font-heading leading-snug text-xl font-medium tracking-wide text-text-primary md:text-2xl lg:text-3xl ${hClassName}`}
       >
         {children}
       </h2>
 
       {description && (
-        <p className={'font-base md:text-lg text-basetext-text-secondarymd:text-lg ' + pClassName}>
+        <p
+          className={
+            'font-base md:text-lg text-base leading-snug text-text-secondary md:text-lg ' +
+            pClassName
+          }
+        >
           {description}
         </p>
       )}

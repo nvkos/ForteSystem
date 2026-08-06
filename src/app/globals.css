@@ -27,7 +27,7 @@
   /* ========== BREAKPOINTS ========== */
   --breakpoint-menu: 35rem; /* 560px */
   --breakpoint-xxs: 360; /* 560px */
-  --breakpoint-xs: 420; /* 560px */
+  --breakpoint-xs: 420px; /* 560px */
 
   /* ========== COLORS ========== */
   --color-primary: #0052cc;
@@ -220,8 +220,18 @@
 
 .big-glass_on_blue:hover {
   background-image: url('./../assets/big_glass_on_blue_hover.png');
+  border: 1px solid #ffffff78;
+}
 
-  /*border: none;*/
+.mobile_big-glass_on_blue {
+  background-image: url('./../assets/mobile_big-glass_on_blue.png');
+  background-size: cover;
+  padding: 0 24px;
+  border: 1px solid #ffffff00;
+  height: 41px;
+}
+.mobile_big-glass_on_blue:hover {
+  background-image: url('./../assets/mobile_big-glass_on_blue_hover.png');
   border: 1px solid #ffffff78;
 }
 
@@ -339,9 +349,12 @@
     line-height: var(--leading-snug);
   }
 
-  .e222background {
+  .hero-background_mobile {
     position: absolute;
-    inset: 0;
+    height: calc(100svh + 115px);
+    top: 0;
+    left: 0;
+    right: 0;
     background:
       radial-gradient(circle at top, #d7e8ff 0%, transparent 35%),
       radial-gradient(circle at bottom right, #dce9ff 0%, transparent 30%),
@@ -350,8 +363,16 @@
     opacity: 0.8;
   }
 
-  .partner-logo {
-    height: 50px;
+  .hero-background {
+    position: absolute;
+    inset: 0;
+    height: 100vh;
+    background:
+      radial-gradient(circle at top, #d7e8ff 0%, transparent 35%),
+      radial-gradient(circle at bottom right, #dce9ff 0%, transparent 30%),
+      linear-gradient(#ffffff, #f6f9fd);
+    z-index: -1;
+    opacity: 0.8;
   }
 }
 

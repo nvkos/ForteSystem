@@ -14,7 +14,7 @@ export function Hero() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 250);
     };
 
     handleScroll();
@@ -30,22 +30,22 @@ export function Hero() {
 
   return (
     <>
-      <div className="e222background"></div>
+      <div className="hero-background_mobile sm:h-[100svh]"></div>
       <div className="hidden sm:block topbar bg-white text-xsm font-heading font-light">
         <Container className={'py-2'}>
           <div
             className="flex flex-row items-start justify-between gap-2
-           md:items-center
+            md:items-center
           "
           >
             <div
               className=" flex flex-col gap-1 text-xxs
-            md:flex-row md:text-[13px] md:topbar__left md:items-center md:gap-10
+              lg:flex-row md:text-[12px] lg:text-[13px] lg:topbar__left lg:items-center lg:gap-10
             "
             >
               <p>ООО «Форте Систем»</p>
               <p className="topbar__address flex flex-row items-center gap-3" aria-label="Адрес">
-                <span className={'hidden sm:block'}>
+                <span className={'hidden xl:block'}>
                   <Icons type={'map'} />
                 </span>
                 <span>220024, г. Минск, ул. Серова, д. 2А, каб. 31В</span>
@@ -53,17 +53,17 @@ export function Hero() {
             </div>
             <div
               className="flex flex-col gap-1 text-xxs
-            md:flex-row md:text-[13px] md:items-center md:gap-10
+             lg:flex-row md:text-[12px] lg:text-[13px] lg:items-center lg:gap-10
             "
             >
               <a className="flex flex-row items-center gap-3" href="tel:+375447191824">
-                <span className={'hidden sm:block'}>
+                <span className={'hidden xl:block'}>
                   <Icons type={'phone'} />
                 </span>
                 <span>+375 44 719-18-24</span>
               </a>
               <a className="flex flex-row items-center gap-3" href="mailto:sales@fortesystem.by">
-                <span className={'hidden sm:block'}>
+                <span className={'hidden xl:block'}>
                   <Icons type={'mail'} />
                 </span>
                 <span>sales@fortesystem.by</span>
@@ -114,7 +114,7 @@ export function Hero() {
       <Section className="lg:py-0 md:py-0 pb-8 sm:py-0 min-h-svh -mt-20 sm:-mt-32 flex flex-col">
         {/* фоновые эффекты */}
         <div
-          className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-50 via-white to-white bg-cover bg-center"
+          className="hidden sm:absolute inset-0 -z-10 bg-gradient-to-br from-blue-50 via-white to-white bg-cover bg-center"
           style={{ backgroundImage: `url(${heroBack.src})` }}
         />
 
@@ -128,7 +128,8 @@ export function Hero() {
 
               {/*max-w-xl*/}
 
-              text-2xl
+              text-[22px]
+              xs:text-2xl
               sm:text-3xl
               font-semibold
               leading-snug
@@ -141,10 +142,11 @@ export function Hero() {
               lg:text-5xl
             "
               >
-                Системный интегратор <span className={'text-primary'}>IT-решений</span>
+                Системный интегратор <br className={'block xs:hidden'} />
+                <span className={'text-primary text-2xl sm:text-3xl'}>IT-решений</span>
               </h1>
 
-              <p className="max-w-3xl text-sm md:text-lg leading-snug text-text-secondary pb-3">
+              <p className="max-w-3xl text-base md:text-lg leading-snug text-text-secondary pb-3">
                 Комплексные решения в области системной интеграции, поставки серверного оборудования
                 и IT-инфраструктуры для бизнеса любого масштаба.
               </p>
@@ -163,7 +165,7 @@ export function Hero() {
                 </a>
               </div>
             </div>
-            <div className="hidden xs:flex justify-between items-center gap-5 pt-10 sm:pt-25 pb-6">
+            <div className="hidden sm:flex justify-between items-center gap-5 pt-10 sm:pt-25 pb-6">
               <BrandsMarquee />
               <div id={'about-us'} className={'self-end mb-11'} />
             </div>

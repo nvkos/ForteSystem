@@ -29,16 +29,20 @@ export function ProductCard({ title, description, item }: PartnerCardProps) {
       <div className={'flex  p-6'}>
         <div>
           <div className={'flex justify-between items-baseline mb-3'}>
-            <h3 className=" font-heading leading-snug text-base font-medium">{title}</h3>
+            <h3 className=" font-heading leading-snug text-base font-medium max-w-60 xs-max-w-fit">
+              {title}
+            </h3>
             <div
-              className="flex items-center justify-center rounded-md text-primary max-w-auto p-3 border absolute -top-3 right-5 bg-white"
+              className="flex items-center justify-center rounded-md text-primary max-w-auto p-3 sm:p-3 border absolute -top-3 right-5 bg-white"
               // onClick={() => setOpened(item)}
             >
               {imgs[item]}
               {/*<Network/>*/}
             </div>
           </div>
-          <p className="text-base leading-snug text-text-secondary text-justify">{description}</p>
+          <p className="text-sm sm:text-base leading-snug text-text-secondary text-justify">
+            {description}
+          </p>
         </div>
         {/*<ArrowRight className={'self-end w-40'}/>*/}
       </div>

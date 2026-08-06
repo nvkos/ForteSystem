@@ -38,16 +38,15 @@ export function BrandsMarquee() {
             key={`${brand}-${index}`}
             className="
               flex
-              h-10
+              h-9
               sm:h-24
               w-fit
               {/*min-w-[180px]*/}
               shrink-0
               items-center
               justify-center
-              px-4
-              sm:px-8
-              mx-9
+              px-4 sm:px-8
+              mx-4 sm:mx-9
 
               {/*lg:min-w-[180px]*/}
               {/*md:min-w-[160px]*/}
@@ -57,13 +56,7 @@ export function BrandsMarquee() {
             <PartnersIcons
               partner={brand}
               size={50}
-              style="w-auto object-contain
-                             opacity-60 grayscale
-
-                             transition-all duration-300
-
-                             hover:opacity-100 hover:grayscale-0
-                           "
+              style="w-auto object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
             />
           </div>
         ))}

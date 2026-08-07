@@ -4,6 +4,7 @@ import { Paperclip } from 'lucide-react';
 import React, { useRef, useState } from 'react';
 import { InputContacts } from '@/widgets/contact/Input';
 import { Button } from '@/components/ui/button';
+import { POST } from '@/app/api/contacts/route';
 
 export function ContactForm() {
   const [form, setForm] = useState({
@@ -28,6 +29,8 @@ export function ContactForm() {
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
     const selected = e.target.files?.[0];
 
     if (!selected) return;
@@ -38,19 +41,21 @@ export function ContactForm() {
 
   const handleSendRequest = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    console.log(form);
     try {
       setLoading(true);
 
-      await fetch('/api/contact', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...form,
-        }),
+        body: JSON.stringify(form),
       });
+
+      if (!response.ok) {
+        throw new Error('Ошибка отправки');
+      }
 
       // открыть модалку
       // setIsSuccessModalOpen(true);
@@ -64,7 +69,7 @@ export function ContactForm() {
         email: '',
         message: '',
       });
-
+      console.log('очистилась форма');
       setFile(null);
       setFileName('');
 
@@ -139,8 +144,11 @@ export function ContactForm() {
           <input ref={inputRef} hidden type="file" onChange={handleFileChange} />
 
           <button
-            type="submit"
             disabled={loading}
+            onClick={(e) => {
+              e.preventDefault();
+              inputRef.current?.click();
+            }}
             className="
             inline-flex items-center gap-2 px-5 py-2 md:py-3
             rounded-xl border border-slate-300
@@ -157,7 +165,7 @@ export function ContactForm() {
 
         <Button
           variant="glass"
-          onClick={(e) => handleSendRequest(e)}
+          type="submit"
           className="
           mt-12 h-10 w-full
           rounded-2xl

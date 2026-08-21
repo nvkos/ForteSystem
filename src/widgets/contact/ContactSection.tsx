@@ -29,7 +29,7 @@ export function ContactSection() {
         <div className="absolute -bottom-56 right-[-200px] h-[700px] w-[700px] rounded-full bg-[#0052CC]/10 blur-[180px]" />
         <div className="absolute -top-56 left-[-400px] h-[700px] w-[900px] rounded-full bg-[#0052CC]/20 blur-[130px]" />
 
-        <div className="grid gap-10 md:gap-14 md:gap-20 lg:grid-cols-[520px_1fr]">
+        <div className="grid gap-10 md:gap-14 lg:gap-20 md:grid-cols-[1fr_405px] lg:grid-cols-[520px_1fr]">
           {/* ================================= */}
 
           {/* Левая колонка */}
@@ -41,7 +41,7 @@ export function ContactSection() {
               Расскажите о своей задаче
             </Heading>
 
-            <h3 className="mt-8 md:mt-14 text-base md:text-xl font-semibold text-slate-800">
+            <h3 className="mt-8 lg:mt-14 text-base md:text-xl font-semibold text-slate-800">
               После отправки заявки:
             </h3>
 

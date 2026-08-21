@@ -25,7 +25,7 @@ export default function Home() {
       <Hero isIPhone={isIPhone} />
       <div className="flex sm:hidden justify-between items-center gap-5 pt-10 sm:pt-25 pb-6">
         <BrandsMarquee />
-        <div id={'about-us'} className={'self-end mb-11'} />
+        <div id={'mob-about-us'} className={'self-end mb-11'} />
       </div>
       <Partner />
       <Product />

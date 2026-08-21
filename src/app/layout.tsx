@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { unbounded, manrope } from '@/lib/fonts';
+import React from 'react';
+import { NotificationProvider } from '@/components/notifications/NotificationProvider';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -12,7 +14,7 @@ export const metadata: Metadata = {
   title: 'Forte System',
   description: 'Серверные решения для надежной инфраструктуры',
   icons: {
-    icon: '/ForteSystem/favicon.ico',
+    icon: '/favicon.ico',
   },
 };
 
@@ -27,12 +29,14 @@ export default function RootLayout({
       className={`${manrope.variable} ${unbounded.variable}`}
       suppressHydrationWarning
     >
-      <body
-        suppressHydrationWarning
-        // className={`antialiased`}
-      >
-        {children}
-      </body>
+      <NotificationProvider>
+        <body
+          suppressHydrationWarning
+          // className={`antialiased`}
+        >
+          {children}
+        </body>
+      </NotificationProvider>
     </html>
   );
 }

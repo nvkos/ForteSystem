@@ -10,8 +10,8 @@ interface PartnerCardProps {
 
 export function PartnerCard({ icon, title, description }: PartnerCardProps) {
   return (
-    <GlassCard className="h-full py-3.5 sm:py-5 px-5 sm:px-7 flex items-center gap-5 sm:gap-7">
-      <div className="flex p-0 sm:p-3 items-center justify-center rounded-md bg-none sm:bg-primary/10 text-primary">
+    <GlassCard className="h-full py-3.5 sm:py-5 px-5 sm:px-5 lg:px-7 flex items-center gap-5 sm:gap-7">
+      <div className="flex p-0 sm:p-3 items-center w-9 sm:w-15 justify-center rounded-md bg-none sm:bg-primary/10 text-primary ">
         {icon}
       </div>
 

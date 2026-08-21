@@ -17,7 +17,7 @@ const coordinates: Record<StepNumber, { left: number; top: number }> = {
 
 export function HowWeWork() {
   return (
-    <Section className={'hidden md:block py-12 sm:py-16 lg:py-18 bg-text-primary'}>
+    <Section className={'hidden md:block py-12 sm:py-16 lg:py-18 bg-[#2b2e35]'}>
       <Container>
         <Heading
           hClassName={'text-white'}

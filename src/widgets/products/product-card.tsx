@@ -26,10 +26,10 @@ export function ProductCard({ title, description, item }: PartnerCardProps) {
   return (
     <GlassCard className="h-full flex flex-col gap-1 relative">
       {/*<img src={imgs[item].src} alt={'server image'} className='max-h-45 absolute -top-10 -right-10'/>*/}
-      <div className={'flex  p-6'}>
+      <div className={'flex p-6'}>
         <div>
           <div className={'flex justify-between items-baseline mb-3'}>
-            <h3 className=" font-heading leading-snug text-base font-medium max-w-60 xs-max-w-fit">
+            <h3 className="font-heading leading-snug text-base font-medium mr-14 xs-max-w-fit md:tracking-[-1%]">
               {title}
             </h3>
             <div

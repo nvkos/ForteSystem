@@ -11,7 +11,7 @@ export function Product() {
           Оборудование и решения
         </Heading>
 
-        <div className="mt-8 sm:mt-10 grid gap-5 sm:gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-8 sm:mt-10 grid gap-5 sm:gap-6 lg:gap-8 md:grid-cols-2 xl:grid-cols-3">
           <ProductCard
             item={'server'}
             title="Серверы"

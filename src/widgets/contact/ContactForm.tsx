@@ -4,7 +4,7 @@ import { Paperclip } from 'lucide-react';
 import React, { useRef, useState } from 'react';
 import { InputContacts } from '@/widgets/contact/Input';
 import { Button } from '@/components/ui/button';
-import { POST } from '@/app/api/contacts/route';
+// import { POST } from '@/app/api/contact/route';
 
 export function ContactForm() {
   const [form, setForm] = useState({
@@ -41,21 +41,37 @@ export function ContactForm() {
 
   const handleSendRequest = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log('🔥🔥🔥 HANDLE SEND REQUEST');
     console.log(form);
     try {
       setLoading(true);
 
+      const formData = new FormData();
+
+      formData.append('name', form.name);
+      formData.append('company', form.company);
+      formData.append('phone', form.phone);
+      formData.append('email', form.email);
+      formData.append('message', form.message);
+
+      if (file) {
+        formData.append('file', file);
+      }
+
       const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(form),
+        body: formData,
       });
 
+      console.log('STATUS:', response.status);
+
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Ошибка отправки');
+        throw new Error(data.error || 'Ошибка отправки');
       }
+
+      console.log('Заявка отправлена:', data);
 
       // открыть модалку
       // setIsSuccessModalOpen(true);
@@ -98,7 +114,7 @@ export function ContactForm() {
         relative overflow-hidden rounded-[36px] border border-white/30 bg-white/20 backdrop-blur-3xl shadow-[0_40px_120px_rgba(0,82,204,.15)]
       "
       >
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 sm:grid-cols-2">
           <InputContacts label="Имя *" name="name" value={form.name} onChange={handleChange} />
 
           <InputContacts
@@ -144,6 +160,7 @@ export function ContactForm() {
           <input ref={inputRef} hidden type="file" onChange={handleFileChange} />
 
           <button
+            type="button"
             disabled={loading}
             onClick={(e) => {
               e.preventDefault();
@@ -171,7 +188,7 @@ export function ContactForm() {
           rounded-2xl
           text-lg font-medium transition-all duration-300
 
-          hover:scale-[1.01] hover:shadow-[0_20px_60px_rgba(0,82,204,.45)] hover:bg-primary hover:text-white active:scale-[.99]
+          hover:shadow-[0_20px_60px_rgba(0,82,204,.3)] hover:bg-primary hover:text-white active:scale-[.99]
         "
         >
           Отправить заявку

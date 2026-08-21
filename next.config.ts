@@ -4,9 +4,6 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-
-  basePath: '/ForteSystem',
-  assetPrefix: '/ForteSystem/',
 };
 
 export default nextConfig;

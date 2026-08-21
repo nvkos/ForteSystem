@@ -10,7 +10,7 @@ export function MakeRequest() {
 
       <Container>
         <div className="flex flex-col sm:flex-row justify-between items-center relative">
-          <div className={'max-w-140 mb-17 sm:mb-0'}>
+          <div className={'max-w-140 sm:max-w-100 lg:max-w-140 mb-17 sm:mb-0'}>
             <div
               className={
                 'glass_on_blue bg-repeat-round w-fit py-2.5 px-4 text-white text-xs font-medium mb-5 flex items-center gap-2 leading-none'
@@ -29,7 +29,11 @@ export function MakeRequest() {
             </Heading>
           </div>
 
-          <div className={'flex flex-col sm:flex-row gap-4 sm:gap-7 w-full sm:w-fit'}>
+          <div
+            className={
+              'flex flex-col xs:flex-row gap-4 lg:gap-7 sm:flex-col lg:flex-row w-full sm:w-fit'
+            }
+          >
             <a href="#contact-with-us" className={'grow-1 sm:grow-0'}>
               <Button
                 className={

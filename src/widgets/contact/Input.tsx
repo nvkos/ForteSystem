@@ -12,7 +12,7 @@ type Props = {
 export function InputContacts({ label, name, value, onChange, type = 'text' }: Props) {
   return (
     <label className="block">
-      <span className="mb-3 block text-sm md:text-[15px] text-slate-500">{label}</span>
+      <span className="mb-1.5 md:mb-3 block text-sm md:text-[15px] text-slate-500">{label}</span>
 
       <input
         name={name}

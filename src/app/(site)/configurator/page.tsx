@@ -1,7 +1,9 @@
+import { Configurator } from '@/widgets/configurator/Configurator';
+
 export default function ConfiguratorPage() {
   return (
     <main>
-      <h1>Конфигуратор</h1>
+      <Configurator />
     </main>
   );
 }

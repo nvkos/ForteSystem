@@ -33,14 +33,14 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
 
     setTimeout(() => {
       setNotifications((prev) => prev.filter((notification) => notification.id !== id));
-    }, 2500);
+    }, 4000);
   }, []);
 
   return (
     <NotificationContext.Provider value={{ notify }}>
       {children}
 
-      <div className="fixed bottom-6 left-1/2 z-[9999] flex -translate-x-1/2 flex-col gap-2">
+      <div className="fixed top-28 -right-[143px] z-[9999] flex -translate-x-1/2 flex-col gap-2">
         {notifications.map((notification) => (
           <div
             key={notification.id}
@@ -50,15 +50,17 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
               items-center
               gap-3
               rounded-xl
-              px-4
-              py-3
+              px-3
+              py-2
               text-sm
-              text-white
-              shadow-xl
+              text-primary
+              bg-white
+              border border-primary
+              shadow-sm
               transition-all
 
               ${
-                notification.type === 'success'
+                notification.type === 'success' || notification.type === 'info'
                   ? 'bg-[#3b82f6]'
                   : notification.type === 'error'
                     ? 'bg-[#3b82f6]'
@@ -67,7 +69,7 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
             `}
           >
             <span>
-              {notification.type === 'success' ? '✓' : notification.type === 'error' ? '!' : 'i'}
+              {notification.type === 'success' ? '✓' : notification.type === 'error' ? '!' : ''}
             </span>
 
             <span>{notification.message}</span>

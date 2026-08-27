@@ -3,7 +3,7 @@ import React from 'react';
 export default function ShortLogo({ size, color }: { size?: number; color?: string }) {
   return (
     <svg
-      width="auto"
+      // width="auto"
       height={size ?? '50'}
       viewBox="0 0 139 168"
       fill="none"

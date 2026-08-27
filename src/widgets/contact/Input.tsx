@@ -1,9 +1,8 @@
-import { form } from 'framer-motion/m';
 import React from 'react';
 
 type Props = {
   label: string;
-  name: keyof typeof form;
+  name: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type?: string;

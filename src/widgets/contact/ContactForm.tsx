@@ -4,7 +4,7 @@ import { Paperclip } from 'lucide-react';
 import React, { useRef, useState } from 'react';
 import { InputContacts } from '@/widgets/contact/Input';
 import { Button } from '@/components/ui/button';
-// import { POST } from '@/app/api/contact/route';
+import { useNotification } from '@/components/notifications/NotificationProvider';
 
 export function ContactForm() {
   const [form, setForm] = useState({
@@ -20,6 +20,8 @@ export function ContactForm() {
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [fileName, setFileName] = useState('');
+
+  const { notify } = useNotification();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({
@@ -76,7 +78,7 @@ export function ContactForm() {
       // открыть модалку
       // setIsSuccessModalOpen(true);
       console.log('открылась модалка');
-
+      notify('Заявка успешно создана! Спасибо за обращение.');
       // очистить форму
       setForm({
         name: '',
@@ -167,7 +169,7 @@ export function ContactForm() {
               inputRef.current?.click();
             }}
             className="
-            inline-flex items-center gap-2 px-5 py-2 md:py-3
+            inline-flex items-center gap-2 px-4 py-2 md:py-3
             rounded-xl border border-slate-300
             bg-white/80
             text-sm text-slate-600
@@ -183,15 +185,19 @@ export function ContactForm() {
         <Button
           variant="glass"
           type="submit"
+          disabled={loading}
           className="
-          mt-12 h-10 w-full
+          mt-12 h-12 w-full
           rounded-2xl
           text-lg font-medium transition-all duration-300
 
           hover:shadow-[0_20px_60px_rgba(0,82,204,.3)] hover:bg-primary hover:text-white active:scale-[.99]
         "
         >
-          Отправить заявку
+          {loading && (
+            <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+          )}
+          {loading ? 'Отправка...' : 'Отправить'}
         </Button>
 
         <p className="mt-6 text-center text-[12px] md:text-sm leading-[1.2] text-slate-500">

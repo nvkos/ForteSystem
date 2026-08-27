@@ -13,30 +13,18 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: 'Forte System',
   description: 'Серверные решения для надежной инфраструктуры',
-  icons: {
-    icon: '/favicon.ico',
-  },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="ru"
       className={`${manrope.variable} ${unbounded.variable}`}
       suppressHydrationWarning
     >
-      <NotificationProvider>
-        <body
-          suppressHydrationWarning
-          // className={`antialiased`}
-        >
-          {children}
-        </body>
-      </NotificationProvider>
+      <body suppressHydrationWarning>
+        <NotificationProvider>{children}</NotificationProvider>
+      </body>
     </html>
   );
 }

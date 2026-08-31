@@ -37,7 +37,7 @@ export function BrandStep({ platform, selectedBrand, onSelect, onBack }: Props) 
               inline-flex
               items-center
               gap-2
-              text-sm
+              text-sm cursor-pointer
               text-slate-500
               transition-colors
               hover:text-primary
@@ -46,10 +46,9 @@ export function BrandStep({ platform, selectedBrand, onSelect, onBack }: Props) 
             <ArrowLeft size={16} />
             Назад
           </button>
+
           <ConfiguratorStepper step={2} platform={platform} />
-          {/*<p className="text-sm font-medium text-center text-primary">*/}
-          {/*  Шаг 2 из 3*/}
-          {/*</p>*/}
+          
           <div className="flex justify-end">
             <button
               type="button"
@@ -60,7 +59,7 @@ export function BrandStep({ platform, selectedBrand, onSelect, onBack }: Props) 
               inline-flex
               items-center
               gap-2
-              text-sm
+              text-sm cursor-pointer
               text-slate-500
               transition-colors
               hover:text-primary

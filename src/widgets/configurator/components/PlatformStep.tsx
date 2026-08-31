@@ -7,12 +7,10 @@ import { Heading } from '@/shared';
 import Link from 'next/link';
 import { ConfiguratorStepper } from '@/widgets/configurator/components/ConfiguratorStepper';
 
-type Step = 1 | 2 | 3;
 
 type Props = {
   onSelect: (platform: PlatformId) => void;
   onBack: () => void;
-  step: Step;
 };
 
 const platforms = [
@@ -31,7 +29,7 @@ const platforms = [
   },
 ];
 
-export function PlatformStep({ onSelect, onBack, step }: Props) {
+export function PlatformStep({ onSelect, onBack }: Props) {
   return (
     <section className="">
       <div className="mb-5 md:mb-11">
@@ -39,23 +37,25 @@ export function PlatformStep({ onSelect, onBack, step }: Props) {
           Выберите платформу
         </Heading>
         <div className={'grid grid-cols-3 mb-8 mt-4 items-center'}>
-          <button
-            type="button"
-            onClick={onBack}
-            className="
-              inline-flex
-              items-center
-              gap-2
-              text-sm
-              text-slate-500
-              transition-colors
-              hover:text-primary
-            "
-          >
-            <ArrowLeft size={16} />
-            Выйти
-          </button>
-          <ConfiguratorStepper step={step} />
+          <Link href="/">
+            <button
+              type="button"
+              onClick={onBack}
+              className="
+                inline-flex
+                items-center
+                gap-2
+                text-sm cursor-pointer
+                text-slate-500
+                transition-colors
+                hover:text-primary
+              "
+            >
+              <ArrowLeft size={16} />
+              Выйти
+            </button>
+          </Link>
+          <ConfiguratorStepper step={1} />
           {/*<p className="text-sm font-medium text-center text-primary">*/}
           {/*  Шаг 1 из 3*/}
           {/*</p>*/}

@@ -37,9 +37,6 @@ export function SelectField({ field, value, onChange }: Props) {
       : selectedOption.label
     : '';
 
-  /*
-   * Позиция dropdown
-   */
   const updatePosition = () => {
     if (!buttonRef.current) return;
 
@@ -85,9 +82,7 @@ export function SelectField({ field, value, onChange }: Props) {
   useEffect(() => {
     if (!isOpen) return;
 
-    const handleResize = () => {
-      setIsOpen(false);
-    };
+    const handleResize = () =>  setIsOpen(false);
 
     window.addEventListener('resize', handleResize);
 
@@ -101,17 +96,10 @@ export function SelectField({ field, value, onChange }: Props) {
 
     const handleMouseDown = (event: MouseEvent) => {
       const target = event.target as Node;
-
       const clickedButton = buttonRef.current?.contains(target);
-
       const clickedDropdown = dropdownRef.current?.contains(target);
 
-      /*
-       * Если кликнули либо по кнопке,
-       * либо по dropdown — ничего не делаем.
-       *
-       * Только настоящий внешний клик закрывает меню.
-       */
+     
       if (clickedButton || clickedDropdown) {
         return;
       }
@@ -126,9 +114,6 @@ export function SelectField({ field, value, onChange }: Props) {
     };
   }, [isOpen]);
 
-  /*
-   * Escape
-   */
   useEffect(() => {
     if (!isOpen) return;
 
@@ -145,9 +130,6 @@ export function SelectField({ field, value, onChange }: Props) {
     };
   }, [isOpen]);
 
-  /*
-   * Выбор значения
-   */
   const handleSelect = (optionValue: string) => {
     console.log('SELECTED:', optionValue);
 
@@ -155,16 +137,12 @@ export function SelectField({ field, value, onChange }: Props) {
 
     setIsOpen(false);
   };
-
+console.log(value)
   return (
     <div className="space-y-2">
-      {/* LABEL */}
-
       <label htmlFor={field.id} className="block text-sm font-medium text-slate-700">
         {field.label}
       </label>
-
-      {/* SELECT BUTTON */}
 
       <button
         ref={buttonRef}
@@ -180,7 +158,7 @@ export function SelectField({ field, value, onChange }: Props) {
           justify-between
           rounded-2xl
           border
-          bg-white/70
+          ${selectedLabel ? 'bg-primary/5' : 'bg-white/70'}
           px-3
           py-2
           text-left
@@ -199,13 +177,13 @@ export function SelectField({ field, value, onChange }: Props) {
                 shadow-[0_8px_30px_rgba(0,82,204,.10)]
               `
               : `
-                border-slate-200
+                ${selectedLabel ? 'border-primary' : 'border-slate-200'}
                 hover:border-slate-300
               `
           }
         `}
       >
-        <span className={selectedLabel ? 'text-slate-800' : 'text-slate-400'}>
+        <span className={selectedLabel ? 'text-primary' : 'text-slate-400'}>
           {selectedLabel || 'Не выбрано'}
         </span>
 
@@ -251,8 +229,8 @@ export function SelectField({ field, value, onChange }: Props) {
               duration-150
 
               scrollbar-thin
-    scrollbar-thumb-slate-300
-    scrollbar-track-transparent
+              scrollbar-thumb-slate-300
+              scrollbar-track-transparent
             "
             style={{
               top: position.top,

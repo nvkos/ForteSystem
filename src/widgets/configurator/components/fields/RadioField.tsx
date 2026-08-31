@@ -6,17 +6,9 @@ type Props = {
   onChange: (value: string) => void;
 };
 
-const colSpanClasses = {
-  1: 'lg:grid-cols-1',
-  2: 'lg:grid-cols-2',
-  3: 'grid-cols-3',
-  4: 'sm:grid-cols-2 lg:grid-cols-4',
-  5: 'lg:grid-cols-5',
-  6: 'lg:grid-cols-6',
-} as const;
 
 export function RadioField({ field, value, onChange }: Props) {
-  console.log(field);
+
   return (
     <fieldset className="space-y-2">
       <legend className="text-sm font-medium text-slate-700">{field.label}</legend>
@@ -52,7 +44,6 @@ export function RadioField({ field, value, onChange }: Props) {
                       border-primary
                       bg-primary/5
                       text-primary
-                      shadow-[0_8px_30px_rgba(0,82,204,.08)]
                     `
                     : `
                       border-slate-200

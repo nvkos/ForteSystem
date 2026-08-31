@@ -19,7 +19,7 @@ export function ConfiguratorStepper({ step, platform, brand }: Props) {
 
   console.log(platform);
   return (
-    <div className="flex w-fit items-center gap-2 self-center rounded-2xl border-white/60 bg-white/60 px-2 py-2 m-[0_auto]">
+    <div className="flex w-fit items-center gap-2 self-center rounded-full border-white/60 bg-white/60 px-2 py-2 m-[0_auto]">
       {steps.map((item, index) => {
         const isActive = step === item.id;
         const isCompleted = step > item.id;

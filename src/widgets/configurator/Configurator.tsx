@@ -18,10 +18,13 @@ export function Configurator() {
   const configurator = useConfigurator();
 
   const { step, submitted } = configurator;
+  const height = step === 3 ? 'h-[calc(100%_+_90px)]' : 'h-[calc(100svh_+_0px)]';
 
   return (
     <div>
-      <Container className={'pt-6 pb-25 md:pt-9'}>
+      
+      <Container className={'pt-6 pb-25 md:pt-12 md:pb-17 relative'}>
+      <div className={`hero-background_mobile ${height} -top-[90px]`} />
         <>
           {submitted ? (
             // <ConfiguratorSuccess
@@ -35,13 +38,11 @@ export function Configurator() {
                   <PlatformStep
                     onSelect={configurator.selectPlatform}
                     onBack={configurator.goBack}
-                    step={step}
                   />
                 )}
 
                 {step === 2 && (
                   <BrandStep
-                    step={step}
                     platform={configurator.platform}
                     selectedBrand={configurator.brand}
                     onSelect={configurator.selectBrand}
@@ -51,7 +52,6 @@ export function Configurator() {
 
                 {step === 3 && (
                   <RequirementsStep
-                    step={step}
                     platform={configurator.platform}
                     brand={configurator.brand}
                     schema={configurator.schema}

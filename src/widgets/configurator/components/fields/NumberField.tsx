@@ -14,16 +14,16 @@ export function NumberField({ field, value, onChange }: NumberFieldProps) {
         onChange={(e) => {
           onChange(e.target.value);
         }}
-        className="
+        className={`
 
           w-full
           rounded-2xl
           border
-          border-slate-200
-          bg-white/60
+          ${value ? 'border-primary' : 'border-slate-200'}
+          ${value ? 'bg-primary/5' : 'bg-white/60'}
           px-3 py-2
           text-sm leading-tight
-          text-slate-800
+          ${value ? 'text-primary' : 'text-slate-800'}
           outline-none
           transition-all
 
@@ -39,7 +39,7 @@ export function NumberField({ field, value, onChange }: NumberFieldProps) {
           [appearance:textfield]
           [&::-webkit-inner-spin-button]:appearance-none
           [&::-webkit-outer-spin-button]:appearance-none
-        "
+        `}
       />
     </label>
   );

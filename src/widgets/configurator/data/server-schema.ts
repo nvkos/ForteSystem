@@ -231,8 +231,8 @@ export const SERVER_SCHEMA: ConfigBlock[] = [
         label: 'Форм-фактор SSD',
         type: 'radio',
         colSpan: 'col-span-6 sm:col-span-3 md:col-span-2 lg:col-span-3 xl:col-span-2',
-        cellSpan: 'grid-cols-3',
-        options: ['2.5"', '3.5"', 'M.2'],
+        cellSpan: 'grid-cols-2',
+        options: ['2.5"', 'M.2'],
       },
 
       {

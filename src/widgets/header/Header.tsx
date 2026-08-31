@@ -62,16 +62,16 @@ export function Header() {
             </div>
 
             <div className="hidden menu:flex glass flex-row gap-4 px-6 py-2">
-              <a href="#about-us" className="block text-sm/6 font-semibold hover:text-primary">
+              <a href="/#about-us" className="block text-sm/6 font-semibold hover:text-primary">
                 О компании
               </a>
 
-              <a href="#products" className="block text-sm/6 font-semibold hover:text-primary">
+              <a href="/#products" className="block text-sm/6 font-semibold hover:text-primary">
                 Продукты
               </a>
 
               <a
-                href="#contact-with-us"
+                href="/#contact-with-us"
                 className="block text-sm/6 font-semibold hover:text-primary"
               >
                 Заявка
@@ -79,7 +79,7 @@ export function Header() {
             </div>
 
             <div className="hidden md:flex lg:flex-1 lg:justify-end">
-              <Link href="/configurator">
+              {!isConfiguratorPage && <Link href="/configurator">
                 <Button
                   size="md"
                   variant="default"
@@ -88,7 +88,7 @@ export function Header() {
                   <Icons type="configuration" size={16} />
                   Конфигуратор
                 </Button>
-              </Link>
+              </Link>}
             </div>
           </nav>
         </Container>

@@ -9,14 +9,6 @@ import { Heading } from '@/shared';
 import { ConfiguratorStepper } from '@/widgets/configurator/components/ConfiguratorStepper';
 import { ConfiguratorSidebar } from '@/widgets/configurator/components/ConfiguratorSidebar';
 
-const colSpanClasses = {
-  1: 'lg:col-span-1',
-  2: 'lg:col-span-2',
-  3: 'lg:col-span-3',
-  4: 'lg:col-span-4',
-  5: 'lg:col-span-5',
-  6: 'lg:col-span-6',
-} as const;
 
 type Props = {
   platform: PlatformId | null;
@@ -33,7 +25,6 @@ type Props = {
 export function RequirementsStep({
   platform,
   brand,
-  step,
   schema,
   values,
   onChange,
@@ -58,7 +49,7 @@ export function RequirementsStep({
               inline-flex
               items-center
               gap-2
-              text-sm
+              text-sm cursor-pointer
               text-slate-500
               transition-colors
               hover:text-primary
@@ -145,14 +136,12 @@ export function RequirementsStep({
             </div>
           </div>
 
-          {step === 3 && (
-            <ConfiguratorSidebar
-              platform={platform}
-              brand={brand}
-              schema={schema}
-              values={values}
-            />
-          )}
+          <ConfiguratorSidebar
+            platform={platform}
+            brand={brand}
+            schema={schema}
+            values={values}
+          />
         </div>
       </div>
     </section>

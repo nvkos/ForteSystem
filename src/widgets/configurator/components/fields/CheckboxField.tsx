@@ -6,15 +6,6 @@ type Props = {
   onChange: (value: string[]) => void;
 };
 
-const colSpanClasses = {
-  1: 'lg:grid-cols-1',
-  2: 'lg:grid-cols-2',
-  3: 'grid-cols-3',
-  4: 'sm:grid-cols-2 lg:grid-cols-4',
-  5: 'lg:grid-cols-5',
-  6: 'lg:grid-cols-6',
-} as const;
-
 export function CheckboxField({ field, value, onChange }: Props) {
   const toggleValue = (optionValue: string) => {
     if (value.includes(optionValue)) {

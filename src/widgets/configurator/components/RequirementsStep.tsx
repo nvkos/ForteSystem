@@ -9,7 +9,6 @@ import { Heading } from '@/shared';
 import { ConfiguratorStepper } from '@/widgets/configurator/components/ConfiguratorStepper';
 import { ConfiguratorSidebar } from '@/widgets/configurator/components/ConfiguratorSidebar';
 
-
 type Props = {
   platform: PlatformId | null;
   brand: string | null;
@@ -19,6 +18,7 @@ type Props = {
   onChange: (id: string, value: string | string[]) => void;
 
   onBack: () => void;
+  onSubmit: () => void;
   onReset: () => void;
 };
 
@@ -29,7 +29,8 @@ export function RequirementsStep({
   values,
   onChange,
   onBack,
-  onReset,
+  // onReset,
+  onSubmit,
 }: Props) {
   if (!platform || !brand) {
     return null;
@@ -59,15 +60,12 @@ export function RequirementsStep({
             Назад
           </button>
           <ConfiguratorStepper step={3} brand={brand} platform={platform} />
-          {/*<p className="text-sm font-medium text-center text-primary">*/}
-          {/*  Шаг 3 из 3*/}
-          {/*</p>*/}
         </div>
       </div>
       <div className="">
         <div className={'grid lg:grid-cols-[1fr_320px] gap-6'}>
-          <div className={''}>
-            <div className="">
+          <div>
+            <div>
               {schema.map((block) => (
                 <section
                   key={block.title}
@@ -110,38 +108,35 @@ export function RequirementsStep({
 
             <div className="mt-8 flex justify-end items-center">
               <div className="flex flex-col gap-3 sm:flex-row">
-                <button
-                  type="button"
+                {/*<Link href={'?platform=storage&brand=IBM&success=true'}>*/}
+                <div
+                  onClick={onSubmit}
                   className="
-                    inline-flex
-                    items-center
-                    justify-center
-                    gap-3
-                    rounded-2xl
-                    bg-primary
-                    px-4
-                    py-3
-                    text-sm
-                    font-medium
-                    text-white
-                    shadow-[0_10px_35px_rgba(0,82,204,.22)]
-                    transition-all
-                    hover:shadow-[0_15px_45px_rgba(0,82,204,.32)]
-                  "
+                      inline-flex
+                      items-center
+                      justify-center
+                      gap-3
+                      rounded-2xl
+                      bg-primary
+                      px-4
+                      py-3
+                      text-sm
+                      font-medium
+                      text-white
+                      shadow-[0_10px_35px_rgba(0,82,204,.22)]
+                      transition-all
+                      hover:shadow-[0_15px_45px_rgba(0,82,204,.32)]
+                    "
                 >
                   <Send size={16} />
                   Отправить заявку
-                </button>
+                </div>
+                {/*</Link>*/}
               </div>
             </div>
           </div>
 
-          <ConfiguratorSidebar
-            platform={platform}
-            brand={brand}
-            schema={schema}
-            values={values}
-          />
+          <ConfiguratorSidebar platform={platform} brand={brand} schema={schema} values={values} />
         </div>
       </div>
     </section>

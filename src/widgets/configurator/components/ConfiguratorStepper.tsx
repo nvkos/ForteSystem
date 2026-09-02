@@ -17,7 +17,6 @@ export function ConfiguratorStepper({ step, platform, brand }: Props) {
     { id: 3, label: '3' },
   ] as const;
 
-  console.log(platform);
   return (
     <div className="flex w-fit items-center gap-2 self-center rounded-full border-white/60 bg-white/60 px-2 py-2 m-[0_auto]">
       {steps.map((item, index) => {

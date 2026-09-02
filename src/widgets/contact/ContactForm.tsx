@@ -6,7 +6,13 @@ import { InputContacts } from '@/widgets/contact/Input';
 import { Button } from '@/components/ui/button';
 import { useNotification } from '@/components/notifications/NotificationProvider';
 
-export function ContactForm() {
+export function ContactForm({
+  type,
+  setSubmitted,
+}: {
+  type?: string;
+  setSubmitted?: (submitted: boolean) => void;
+}) {
   const [form, setForm] = useState({
     name: '',
     company: '',
@@ -80,6 +86,9 @@ export function ContactForm() {
       console.log('открылась модалка');
       notify('Заявка успешно создана! Спасибо за обращение.');
       // очистить форму
+      if ((!type || type !== 'main') && setSubmitted) {
+        setSubmitted(true);
+      }
       setForm({
         name: '',
         company: '',
@@ -142,57 +151,60 @@ export function ContactForm() {
           />
         </div>
 
-        <div className="mt-8">
-          <label className="block">
-            <span className="mb-2 md:mb-3 block text-sm md:text-[15px] text-slate-500">
-              Кратко опишите ваш проект или вопрос
-            </span>
+        {type === 'main' && (
+          <div className="mt-8">
+            <label className="block">
+              <span className="mb-2 md:mb-3 block text-sm md:text-[15px] text-slate-500">
+                Кратко опишите ваш проект или вопрос
+              </span>
 
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              rows={4}
-              className="w-full resize-none text-sm md:text-[15px] border-0 border-b border-slate-300 bg-transparent pb-3 outline-none transition placeholder:text-slate-400 focus:border-primary"
-            />
-          </label>
-        </div>
+              <textarea
+                name="message"
+                value={form.message}
+                onChange={handleChange}
+                rows={4}
+                className="w-full resize-none text-sm md:text-[15px] border-0 border-b border-slate-300 bg-transparent pb-3 outline-none transition placeholder:text-slate-400 focus:border-primary"
+              />
+            </label>
+          </div>
+        )}
 
-        <div className="mt-4 md:mt-8">
-          <input ref={inputRef} hidden type="file" onChange={handleFileChange} />
+        {type === 'main' && (
+          <div className="mt-4 md:mt-8">
+            <input ref={inputRef} hidden type="file" onChange={handleFileChange} />
 
-          <button
-            type="button"
-            disabled={loading}
-            onClick={(e) => {
-              e.preventDefault();
-              inputRef.current?.click();
-            }}
-            className="
-            inline-flex items-center gap-2 px-4 py-2 md:py-3
-            rounded-xl border border-slate-300
-            bg-white/80
-            text-sm text-slate-600
-            transition hover:border-primary hover:text-primary
-          "
-          >
-            <Paperclip size={18} />
+            <button
+              type="button"
+              disabled={loading}
+              onClick={(e) => {
+                e.preventDefault();
+                inputRef.current?.click();
+              }}
+              className="
+              inline-flex items-center gap-2 px-4 py-2 md:py-3
+              rounded-xl border border-slate-300
+              bg-white/80
+              text-sm text-slate-600
+              transition hover:border-primary hover:text-primary
+            "
+            >
+              <Paperclip size={18} />
 
-            {fileName || 'Выбрать файл'}
-          </button>
-        </div>
+              {fileName || 'Выбрать файл'}
+            </button>
+          </div>
+        )}
 
         <Button
           variant="glass"
           type="submit"
           disabled={loading}
-          className="
-          mt-12 h-12 w-full
-          rounded-2xl
-          text-lg font-medium transition-all duration-300
-
-          hover:shadow-[0_20px_60px_rgba(0,82,204,.3)] hover:bg-primary hover:text-white active:scale-[.99]
-        "
+          className={`
+            mt-12 h-${type === 'main' ? 12 : 9} w-full
+            rounded-2xl
+            text-sm font-regular transition-all duration-300
+            font-unbounded
+            hover:shadow-[0_20px_60px_rgba(0,82,204,.3)] hover:bg-primary hover:text-white active:scale-[.99]`}
         >
           {loading && (
             <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white" />

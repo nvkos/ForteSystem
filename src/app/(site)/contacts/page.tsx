@@ -1,7 +1,3 @@
 export default function ContactsPage() {
-  return (
-    <main>
-      <h1>Контакты</h1>
-    </main>
-  );
+  return <main>Contacts</main>;
 }

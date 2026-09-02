@@ -3,9 +3,10 @@
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 import type { PlatformId } from '../types/configurator.types';
-import { BRANDS, BRAND_LOGOS } from '../data/brands.tsx';
+// import { BRANDS, BRAND_LOGOS } from '../data/brands.tsx';
 import { Heading } from '@/shared';
 import { ConfiguratorStepper } from '@/widgets/configurator/components/ConfiguratorStepper';
+import { BRANDS, BRAND_LOGOS } from '@/widgets/configurator/data/brands';
 // import Image from "next/image";
 
 type Props = {
@@ -19,7 +20,7 @@ export function BrandStep({ platform, selectedBrand, onSelect, onBack }: Props) 
   if (!platform) {
     return null;
   }
-  console.log(platform);
+
   const brands = BRANDS[platform];
 
   return (
@@ -48,7 +49,7 @@ export function BrandStep({ platform, selectedBrand, onSelect, onBack }: Props) 
           </button>
 
           <ConfiguratorStepper step={2} platform={platform} />
-          
+
           <div className="flex justify-end">
             <button
               type="button"

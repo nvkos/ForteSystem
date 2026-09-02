@@ -9,7 +9,7 @@ import { STORAGE_SCHEMA } from '../data/storage-schema';
 
 import type { ConfigBlock, ConfigValues, PlatformId } from '../types/configurator.types';
 
-type Step = 1 | 2 | 3;
+type Step = 1 | 2 | 3 | 4;
 
 export function useConfigurator() {
   const router = useRouter();
@@ -21,11 +21,26 @@ export function useConfigurator() {
   const [brand, setBrand] = useState<string | null>(null);
   const [values, setValues] = useState<ConfigValues>({});
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [submitted, setSubmitted] = useState<boolean>(false);
 
   useEffect(() => {
     const urlPlatform = searchParams.get('platform');
     const urlBrand = searchParams.get('brand');
+    const success = searchParams.get('success');
+
+    if (success) {
+      const savedConfig = loadConfig();
+
+      if (savedConfig) {
+        setPlatform(savedConfig.platform);
+        setBrand(savedConfig.brand);
+        setValues(savedConfig.values);
+      }
+
+      setStep(4);
+      return;
+    }
 
     if (!urlPlatform) {
       setPlatform(null);
@@ -60,6 +75,7 @@ export function useConfigurator() {
   }, [searchParams, pathname, router]);
 
   const schema = useMemo<ConfigBlock[]>(() => {
+    console.log(platform);
     if (platform === 'servers') {
       return SERVER_SCHEMA;
     }
@@ -100,7 +116,6 @@ export function useConfigurator() {
   };
 
   const selectBrand = (value: string | null) => {
-    console.log(value);
     setBrand(value);
     setStep(3);
 
@@ -143,6 +158,46 @@ export function useConfigurator() {
     }
   };
 
+  const STORAGE_KEY = 'configurator-config';
+
+  function saveConfig() {
+    try {
+      const config = {
+        platform,
+        brand,
+        values,
+      };
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+    } catch (error) {
+      console.error('Не удалось сохранить конфигурацию:', error);
+    }
+  }
+
+  function loadConfig() {
+    try {
+      const data = localStorage.getItem(STORAGE_KEY);
+
+      if (!data) {
+        return null;
+      }
+
+      return JSON.parse(data);
+    } catch (error) {
+      console.error('Не удалось загрузить конфигурацию:', error);
+      return null;
+    }
+  }
+
+  const onSubmit = () => {
+    setIsOpen(true);
+    saveConfig();
+  };
+
+  const toggleOnOpen = () => {
+    setIsOpen(!isOpen);
+  };
+
   const reset = () => {
     setStep(1);
     setPlatform(null);
@@ -156,7 +211,7 @@ export function useConfigurator() {
 
   return {
     step,
-
+    isOpen,
     platform,
     brand,
 
@@ -173,9 +228,14 @@ export function useConfigurator() {
     setSidebarCollapsed,
     setSubmitted,
 
+    onSubmit,
+    loadConfig,
+
     selectPlatform,
     selectBrand,
     setValue,
+
+    toggleOnOpen,
 
     goBack,
     reset,

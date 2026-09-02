@@ -70,7 +70,7 @@ export function ContactSection() {
           <div className="relative">
             {/* декоративное свечение */}
             <div className="absolute -top-10 -right-10 h-80 w-80 rounded-full bg-white/30 blur-[120px]" />
-            <ContactForm />
+            <ContactForm type={'main'} />
           </div>
         </div>
       </Container>

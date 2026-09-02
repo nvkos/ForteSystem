@@ -2,35 +2,31 @@
 
 import { useConfigurator } from './hooks/useConfigurator';
 
-import { ConfiguratorStepper } from './components/ConfiguratorStepper';
-// import { ConfiguratorHero } from './components/ConfiguratorHero';
-
 import { PlatformStep } from './components/PlatformStep';
 import { BrandStep } from './components/BrandStep';
 import { RequirementsStep } from './components/RequirementsStep';
-import { ConfiguratorSidebar } from '@/widgets/configurator/components/ConfiguratorSidebar';
 import { Container } from '@/shared';
-
-// import { ConfiguratorModal } from './components/ConfiguratorModal';
-// import { ConfiguratorSuccess } from './components/ConfiguratorSuccess';
+import { ConfiguratorSuccess } from '@/widgets/configurator/components/ConfiguratorSuccess';
+import { ConfiguratorModal } from '@/widgets/configurator/components/ConfiguratorModal';
+import { useSearchParams } from 'next/navigation';
 
 export function Configurator() {
   const configurator = useConfigurator();
-
+  const searchParams = useSearchParams();
+  const urlBrand = searchParams.get('brand');
+  const urlSuccess = searchParams.get('success');
   const { step, submitted } = configurator;
-  const height = step === 3 ? 'h-[calc(100%_+_90px)]' : 'h-[calc(100svh_+_0px)]';
 
   return (
-    <div>
-      
+    <div className={'relative'}>
+      <div
+        className={`hero-background_mobile ${urlBrand && !urlSuccess ? 'h-[calc(100%_+_90px)]' : 'h-[calc(100svh_+_0px)]'} -top-[90px]`}
+      />
+
       <Container className={'pt-6 pb-25 md:pt-12 md:pb-17 relative'}>
-      <div className={`hero-background_mobile ${height} -top-[90px]`} />
         <>
           {submitted ? (
-            // <ConfiguratorSuccess
-            //   onNewRequest={configurator.reset}
-            // />
-            <p>submitted</p>
+            <ConfiguratorSuccess />
           ) : (
             <div className="gap-5">
               <div className="min-w-0 flex-1">
@@ -59,6 +55,7 @@ export function Configurator() {
                     onChange={configurator.setValue}
                     onBack={configurator.goBack}
                     onReset={configurator.reset}
+                    onSubmit={configurator.onSubmit}
                   />
                 )}
               </div>
@@ -67,15 +64,13 @@ export function Configurator() {
         </>
       </Container>
 
-      {/*{!submitted && (*/}
-      {/*  <ConfiguratorModal*/}
-      {/*    open={false}*/}
-      {/*    platform={configurator.platform}*/}
-      {/*    brand={configurator.brand}*/}
-      {/*    values={configurator.values}*/}
-      {/*    schema={configurator.schema}*/}
-      {/*  />*/}
-      {/*)}*/}
+      {!submitted && (
+        <ConfiguratorModal
+          open={configurator.isOpen}
+          setSubmitted={configurator.setSubmitted}
+          onClose={configurator.toggleOnOpen}
+        />
+      )}
     </div>
   );
 }

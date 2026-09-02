@@ -86,9 +86,13 @@ export function MobileMenu({ isOpen, onToggle, onClose }: MobileMenuProps) {
       <div>
         <div className="fixed inset-x-0 top-0 z-[1300] pointer-events-none min-[561px]:hidden">
           <div className="mx-auto flex h-19 w-full items-center justify-between px-6">
-            <a href="#" aria-label="Forte System" className="pointer-events-auto relative z-[1301]">
+            <Link
+              href="/"
+              aria-label="Forte System"
+              className="pointer-events-auto relative z-[1301]"
+            >
               <FullLogo />
-            </a>
+            </Link>
 
             <button
               type="button"
@@ -142,23 +146,23 @@ export function MobileMenu({ isOpen, onToggle, onClose }: MobileMenuProps) {
 
             <Container className="mt-auto px-0 py-0">
               <div className="flex flex-col gap-3 rounded-[22px] border border-[#8080801a] p-6 text-xs shadow-contacts/5">
-                <a
+                <Link
                   href="tel:+375447191824"
                   className="flex items-center gap-3"
                   aria-label="мобильный номер телефона"
                 >
                   <Icons type="phone" />
                   <span>+375 44 719-18-24</span>
-                </a>
+                </Link>
 
-                <a
+                <Link
                   href="mailto:sales@fortesystem.by"
                   className="flex items-center gap-3"
                   aria-label="электронная почта"
                 >
                   <Icons type="mail" />
                   <span>sales@fortesystem.by</span>
-                </a>
+                </Link>
 
                 <div className="flex items-center gap-3" aria-label="Адрес">
                   <span>220024, Минск, ул. Серова 2А, каб. 31В</span>

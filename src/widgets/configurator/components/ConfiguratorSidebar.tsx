@@ -2,29 +2,9 @@
 
 import { useMemo, useState } from 'react';
 import { ChevronDown, ChevronUp, Settings2 } from 'lucide-react';
+import { ConfigBlock, ConfigField } from '@/widgets/configurator/types/configurator.types';
 
-type SchemaOption =
-  | string
-  | {
-      value: string;
-      label: string;
-    };
-
-type SchemaField = {
-  id: string;
-  label: string;
-  type?: string;
-  colSpan?: number;
-  cellSpan?: number;
-  options?: SchemaOption[];
-};
-
-type SchemaBlock = {
-  title: string;
-  fields: SchemaField[];
-};
-
-type Schema = SchemaBlock[];
+type Schema = ConfigBlock[];
 
 type ConfiguratorSidebarProps = {
   platform?: string | null;
@@ -44,10 +24,10 @@ export function ConfiguratorSidebar({
   onToggle,
 }: ConfiguratorSidebarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
-
+  console.log(values);
   const selectedFields = useMemo(() => {
     return schema.flatMap((block) => {
-      return block.fields.reduce<Array<SchemaField & { displayValue: string }>>((result, field) => {
+      return block.fields.reduce<Array<ConfigField & { displayValue: string }>>((result, field) => {
         if (!values) {
           return result;
         }
@@ -65,8 +45,6 @@ export function ConfiguratorSidebar({
       }, []);
     });
   }, [schema, values]);
-
-  // console.log(selectedFields, schema, values )
 
   const selectedCount = Number(Boolean(platform)) + Number(Boolean(brand)) + selectedFields?.length;
 
@@ -110,13 +88,8 @@ export function ConfiguratorSidebar({
         )}
       </div>
 
-      {/* Selected values */}
       <div className="flex-1 overflow-y-auto p-5">
         <div className="space-y-3">
-          {platform && <SummaryItem label="Платформа" value={platform} />}
-
-          {brand && <SummaryItem label="Бренд" value={brand} />}
-
           {selectedFields?.map((field) => (
             <SummaryItem key={field.id} label={field.label} value={field.displayValue} />
           ))}
@@ -164,7 +137,7 @@ export function ConfiguratorSidebar({
         {collapsed ? (
           <button
             type="button"
-            onClick={onToggle}
+            // onClick={onToggle}
             className="
               flex h-full w-full
               flex-col items-center

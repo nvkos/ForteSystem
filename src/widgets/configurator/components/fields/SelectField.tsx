@@ -82,7 +82,7 @@ export function SelectField({ field, value, onChange }: Props) {
   useEffect(() => {
     if (!isOpen) return;
 
-    const handleResize = () =>  setIsOpen(false);
+    const handleResize = () => setIsOpen(false);
 
     window.addEventListener('resize', handleResize);
 
@@ -99,7 +99,6 @@ export function SelectField({ field, value, onChange }: Props) {
       const clickedButton = buttonRef.current?.contains(target);
       const clickedDropdown = dropdownRef.current?.contains(target);
 
-     
       if (clickedButton || clickedDropdown) {
         return;
       }
@@ -131,13 +130,10 @@ export function SelectField({ field, value, onChange }: Props) {
   }, [isOpen]);
 
   const handleSelect = (optionValue: string) => {
-    console.log('SELECTED:', optionValue);
-
     onChange(optionValue);
-
     setIsOpen(false);
   };
-console.log(value)
+
   return (
     <div className="space-y-2">
       <label htmlFor={field.id} className="block text-sm font-medium text-slate-700">

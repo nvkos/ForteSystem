@@ -218,7 +218,7 @@ export function ContactForm({
           disabled={loading}
           className={`
             mt-12 h-${type === 'main' ? 12 : 9} w-full
-            rounded-2xl
+            rounded-full
             text-sm font-regular transition-all duration-300
             font-unbounded
             hover:shadow-[0_20px_60px_rgba(0,82,204,.3)] hover:bg-primary hover:text-white active:scale-[.99]`}

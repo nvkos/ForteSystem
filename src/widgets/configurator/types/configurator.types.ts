@@ -33,6 +33,23 @@ export type ConfigBlock = {
   fields: ConfigField[];
 };
 
+export const CONFIG_BLOCK_EMOJIS: Record<string, string> = {
+  'Основная информация': '📌',
+  Основное: '📌',
+  'Процессор (CPU)': '🧠',
+  'Память (RAM)': '💾',
+  'RAID-контроллер': '🛡️',
+  'Хранилище HDD': '💽',
+  'Хранилище SSD': '⚡',
+  'Сеть и расширения': '🌐',
+  'Питание (PSU)': '🔌',
+  GPU: '🎮',
+  'Работы / услуги': '🛠️',
+  Контроллеры: '🎛️',
+  Хранилище: '💾',
+  Производительность: '⚡',
+};
+
 export type Platform = {
   id: PlatformId;
   title: string;

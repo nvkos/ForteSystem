@@ -5,12 +5,17 @@ import React, { useRef, useState } from 'react';
 import { InputContacts } from '@/widgets/contact/Input';
 import { Button } from '@/components/ui/button';
 import { useNotification } from '@/components/notifications/NotificationProvider';
+import { PlatformId } from '@/widgets/configurator/data/brands';
+import { router } from 'next/client';
+import { usePathname } from 'next/navigation';
 
 export function ContactForm({
   type,
+  platform,
   setSubmitted,
 }: {
   type?: string;
+  platform?: PlatformId | null;
   setSubmitted?: (submitted: boolean) => void;
 }) {
   const [form, setForm] = useState({
@@ -24,8 +29,10 @@ export function ContactForm({
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState<File | null>(null);
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const [fileName, setFileName] = useState('');
+
+  const pathname = usePathname();
 
   const { notify } = useNotification();
 
@@ -62,6 +69,13 @@ export function ContactForm({
       formData.append('email', form.email);
       formData.append('message', form.message);
 
+      if (type === 'config') {
+        formData.append('isConfigurator', 'true');
+      }
+      if (platform) {
+        formData.append('platform', platform);
+      }
+
       if (file) {
         formData.append('file', file);
       }
@@ -88,6 +102,7 @@ export function ContactForm({
       // очистить форму
       if ((!type || type !== 'main') && setSubmitted) {
         setSubmitted(true);
+        await router.replace(pathname);
       }
       setForm({
         name: '',
@@ -101,7 +116,9 @@ export function ContactForm({
       setFileName('');
 
       if (inputRef.current) {
-        inputRef.current.value = '';
+        if ('value' in inputRef.current) {
+          inputRef.current.value = '';
+        }
       }
     } catch (error) {
       console.error(error);

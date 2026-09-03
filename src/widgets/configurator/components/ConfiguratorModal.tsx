@@ -2,12 +2,15 @@
 import { X } from 'lucide-react';
 import { Heading } from '@/shared';
 import { ContactForm } from '@/widgets/contact/ContactForm';
+import { PlatformId } from '@/widgets/configurator/types/configurator.types';
 
 export function ConfiguratorModal({
+  platform,
   open,
   onClose,
   setSubmitted,
 }: {
+  platform?: PlatformId | null;
   open: boolean;
   onClose: () => void;
   setSubmitted: (open: boolean) => void;
@@ -74,7 +77,7 @@ export function ConfiguratorModal({
           </p>
         </div>
 
-        <ContactForm setSubmitted={setSubmitted} />
+        <ContactForm setSubmitted={setSubmitted} platform={platform} type={'config'} />
       </div>
     </div>
   );

@@ -24,7 +24,7 @@ export function ConfiguratorSidebar({
   onToggle,
 }: ConfiguratorSidebarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
-  console.log(values);
+
   const selectedFields = useMemo(() => {
     return schema.flatMap((block) => {
       return block.fields.reduce<Array<ConfigField & { displayValue: string }>>((result, field) => {

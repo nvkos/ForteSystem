@@ -22,14 +22,7 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
   const notify = useCallback((message: string, type: NotificationType = 'success') => {
     const id = Date.now();
 
-    setNotifications((prev) => [
-      ...prev,
-      {
-        id,
-        message,
-        type,
-      },
-    ]);
+    setNotifications((prev) => [...prev, { id, message, type }]);
 
     setTimeout(() => {
       setNotifications((prev) => prev.filter((notification) => notification.id !== id));
@@ -40,7 +33,7 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
     <NotificationContext.Provider value={{ notify }}>
       {children}
 
-      <div className="fixed top-28 -right-[143px] z-[9999] flex -translate-x-1/2 flex-col gap-2">
+      <div className="fixed bottom-10 left-[24px] right-[24px] sm:left-auto sm:-right-[135px] z-[9999] flex sm:-translate-x-1/2 flex-col gap-2">
         {notifications.map((notification) => (
           <div
             key={notification.id}
@@ -51,17 +44,17 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
               gap-3
               rounded-xl
               px-3
-              py-2
+              py-2 sm:py-4
               text-sm
-              text-primary
-              bg-white
-              border border-primary
+              text-white
+
+              border border-white
               shadow-sm
               transition-all
 
               ${
                 notification.type === 'success' || notification.type === 'info'
-                  ? 'bg-[#3b82f6]'
+                  ? 'bg-primary'
                   : notification.type === 'error'
                     ? 'bg-[#3b82f6]'
                     : 'bg-gray-900'

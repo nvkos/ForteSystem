@@ -26,7 +26,7 @@ export function Configurator() {
       <Container className={'pt-6 pb-25 md:pt-12 md:pb-17 relative'}>
         <>
           {submitted ? (
-            <ConfiguratorSuccess />
+            <ConfiguratorSuccess setSubmitted={configurator.setSubmitted} />
           ) : (
             <div className="gap-5">
               <div className="min-w-0 flex-1">
@@ -66,6 +66,7 @@ export function Configurator() {
 
       {!submitted && (
         <ConfiguratorModal
+          platform={configurator.platform}
           open={configurator.isOpen}
           setSubmitted={configurator.setSubmitted}
           onClose={configurator.toggleOnOpen}

@@ -51,15 +51,14 @@ export function Header() {
       >
         <Container>
           <nav aria-label="Global" className="flex h-full items-center justify-between">
-            <div className="hidden md:flex lg:flex-1">
-              <Link href="#">
+            <div className="hidden menu:flex lg:flex-1">
+              <Link href={isConfiguratorPage ? '/' : '#'}>
                 <span className="sr-only">Forte System</span>
-
                 <FullLogo />
               </Link>
             </div>
 
-            <div className="hidden menu:flex glass flex-row gap-4 px-6 py-2">
+            <div className="hidden md:flex glass flex-row gap-4 px-6 py-2">
               <Link href="/#about-us" className="block text-sm/6 font-semibold hover:text-primary">
                 О компании
               </Link>
@@ -76,7 +75,7 @@ export function Header() {
               </Link>
             </div>
 
-            <div className="hidden md:flex lg:flex-1 lg:justify-end">
+            <div className="hidden menu:flex lg:flex-1 lg:justify-end">
               {!isConfiguratorPage && (
                 <Link href="/configurator">
                   <Button

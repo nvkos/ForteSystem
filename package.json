@@ -2,15 +2,10 @@
   "name": "forte-system",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nvkos.github.io/ForteSystem",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:pages": "set GITHUB_PAGES=true&& next build",
-    "start": "next start",
-    "lint": "eslint",
-    "prepare": "husky",
-    "deploy": "gh-pages -d out --dotfiles"
+    "start": "next start"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

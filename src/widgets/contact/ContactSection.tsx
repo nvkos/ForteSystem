@@ -19,7 +19,7 @@ const steps = [
 export function ContactSection() {
   const contactsData = (
     <ul
-      className="flex flex-col gap-5 w-full p-0 p-5 mt-9 rounded-md sm:grid sm:grid-cols-2 md:flex
+      className="flex flex-col gap-5 w-full p-0 p-5 mt-9 md:mt-14 rounded-md sm:grid sm:grid-cols-2 md:flex
               border border-white/30 bg-white/20 backdrop-blur-3xl shadow-[0_40px_120px_rgba(0,82,204,.15)]/5"
     >
       <li className={'flex items-start gap-3'}>
@@ -119,7 +119,7 @@ export function ContactSection() {
         <div className="absolute -bottom-56 right-[-200px] h-[700px] w-[700px] rounded-full bg-[#0052CC]/10 blur-[180px]" />
         <div className="absolute -top-56 left-[-400px] h-[700px] w-[900px] rounded-full bg-[#0052CC]/20 blur-[130px]" />
 
-        <div className="grid gap-10 md:gap-14 lg:gap-20 md:grid-cols-[1fr_405px] lg:grid-cols-[520px_1fr]">
+        <div className="grid gap-6 md:gap-9 lg:gap-20 md:grid-cols-[1fr_405px] lg:grid-cols-[520px_1fr]">
           <div>
             <Heading hClassName={'mb-4'} pClassName={''} description="">
               Расскажите о своей задаче

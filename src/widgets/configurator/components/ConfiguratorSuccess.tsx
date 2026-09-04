@@ -43,14 +43,16 @@ export function ConfiguratorSuccess({
           </div>
 
           <div className="flex justify-center flex-wrap mt-10 gap-4 sm:gap-8">
-            <Button
-              onClick={() => setSubmitted(false)}
-              size="md"
-              variant="default"
-              className="px-6 py-22px hover:shadow-[0_10px_40px_rgba(0,82,204,.3)]"
-            >
-              Конфигуратор
-            </Button>
+            <Link href={'/configurator'} className={''}>
+              <Button
+                onClick={() => setSubmitted(false)}
+                size="md"
+                variant="default"
+                className="px-6 py-22px hover:shadow-[0_10px_40px_rgba(0,82,204,.3)]"
+              >
+                Конфигуратор
+              </Button>
+            </Link>
 
             <Link href={'/'} className={''}>
               <Button

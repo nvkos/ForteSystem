@@ -6,17 +6,25 @@ import { InputContacts } from '@/widgets/contact/Input';
 import { Button } from '@/components/ui/button';
 import { useNotification } from '@/components/notifications/NotificationProvider';
 import { PlatformId } from '@/widgets/configurator/data/brands';
-import { router } from 'next/client';
-import { usePathname } from 'next/navigation';
+// import { router } from 'next/client';
+// import { usePathname } from 'next/navigation';
+import { ConfigValues } from '@/widgets/configurator/types/configurator.types';
+
+const MAX_FILES = 6;
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
 
 export function ContactForm({
   type,
   platform,
+  values,
   setSubmitted,
+  onClose,
 }: {
   type?: string;
   platform?: PlatformId | null;
   setSubmitted?: (submitted: boolean) => void;
+  values?: ConfigValues;
+  onClose?: (open: boolean) => void;
 }) {
   const [form, setForm] = useState({
     name: '',
@@ -27,13 +35,8 @@ export function ContactForm({
   });
 
   const [loading, setLoading] = useState(false);
-  const [file, setFile] = useState<File | null>(null);
-
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [fileName, setFileName] = useState('');
-
-  const pathname = usePathname();
-
+  const [files, setFiles] = useState<File[]>([]);
   const { notify } = useNotification();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -46,12 +49,35 @@ export function ContactForm({
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    const selected = e.target.files?.[0];
+    const selectedFiles = Array.from(e.target.files ?? []);
 
-    if (!selected) return;
+    if (!selectedFiles.length) return;
 
-    setFile(selected);
-    setFileName(selected.name);
+    const availableSlots = MAX_FILES - files.length;
+
+    if (availableSlots <= 0) {
+      notify(`Можно загрузить не более ${MAX_FILES} файлов`);
+      e.target.value = '';
+      return;
+    }
+
+    const filesToAdd = selectedFiles.slice(0, availableSlots);
+
+    if (selectedFiles.length > availableSlots) {
+      notify(`Можно загрузить не более ${MAX_FILES} файлов`);
+    }
+
+    const oversizedFiles = filesToAdd.filter((file) => file.size > MAX_FILE_SIZE);
+
+    if (oversizedFiles.length > 0) {
+      notify(`Файл "${oversizedFiles[0].name}" превышает максимальный размер 10 МБ`);
+    }
+
+    const validFiles = filesToAdd.filter((file) => file.size <= MAX_FILE_SIZE);
+
+    setFiles((prev) => [...prev, ...validFiles]);
+
+    e.target.value = '';
   };
 
   const handleSendRequest = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -75,10 +101,13 @@ export function ContactForm({
       if (platform) {
         formData.append('platform', platform);
       }
-
-      if (file) {
-        formData.append('file', file);
+      if (values) {
+        formData.append('config', JSON.stringify(values));
       }
+
+      files.forEach((file) => {
+        formData.append('files', file);
+      });
 
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -95,14 +124,11 @@ export function ContactForm({
 
       console.log('Заявка отправлена:', data);
 
-      // открыть модалку
-      // setIsSuccessModalOpen(true);
-      console.log('открылась модалка');
       notify('Заявка успешно создана! Спасибо за обращение.');
-      // очистить форму
-      if ((!type || type !== 'main') && setSubmitted) {
+
+      if (type !== 'main' && setSubmitted && onClose) {
         setSubmitted(true);
-        await router.replace(pathname);
+        onClose(true);
       }
       setForm({
         name: '',
@@ -112,8 +138,7 @@ export function ContactForm({
         message: '',
       });
       console.log('очистилась форма');
-      setFile(null);
-      setFileName('');
+      setFiles([]);
 
       if (inputRef.current) {
         if ('value' in inputRef.current) {
@@ -168,49 +193,86 @@ export function ContactForm({
           />
         </div>
 
-        {type === 'main' && (
-          <div className="mt-8">
-            <label className="block">
-              <span className="mb-2 md:mb-3 block text-sm md:text-[15px] text-slate-500">
-                Кратко опишите ваш проект или вопрос
-              </span>
+        <div className="mt-8">
+          <label className="block">
+            <span className="mb-2 md:mb-3 block text-sm md:text-[15px] text-slate-500">
+              Кратко опишите ваш проект или вопрос
+            </span>
 
-              <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                rows={4}
-                className="w-full resize-none text-sm md:text-[15px] border-0 border-b border-slate-300 bg-transparent pb-3 outline-none transition placeholder:text-slate-400 focus:border-primary"
-              />
-            </label>
-          </div>
-        )}
+            <textarea
+              name="message"
+              value={form.message}
+              onChange={handleChange}
+              rows={4}
+              className="w-full resize-none text-sm md:text-[15px] border-0 border-b border-slate-300 bg-transparent pb-3 outline-none transition placeholder:text-slate-400 focus:border-primary"
+            />
+          </label>
+        </div>
 
-        {type === 'main' && (
-          <div className="mt-4 md:mt-8">
-            <input ref={inputRef} hidden type="file" onChange={handleFileChange} />
+        <div className="mt-4 md:mt-8">
+          <input ref={inputRef} hidden type="file" multiple onChange={handleFileChange} />
 
-            <button
-              type="button"
-              disabled={loading}
-              onClick={(e) => {
-                e.preventDefault();
-                inputRef.current?.click();
-              }}
-              className="
+          <button
+            type="button"
+            disabled={loading}
+            onClick={(e) => {
+              e.preventDefault();
+              inputRef.current?.click();
+            }}
+            className="
               inline-flex items-center gap-2 px-4 py-2 md:py-3
               rounded-xl border border-slate-300
               bg-white/80
               text-sm text-slate-600
               transition hover:border-primary hover:text-primary
             "
-            >
-              <Paperclip size={18} />
+          >
+            <Paperclip size={18} />
+            Выбрать файлы
+          </button>
 
-              {fileName || 'Выбрать файл'}
-            </button>
-          </div>
-        )}
+          {files.length > 0 && (
+            <div className="mt-3 space-y-2">
+              {files.map((file, index) => (
+                <div
+                  key={`${file.name}-${file.lastModified}-${index}`}
+                  className="
+                    flex items-center justify-between gap-3
+                    rounded-lg border border-slate-200
+                    bg-slate-50 px-3 py-2
+                    text-sm
+                  "
+                >
+                  <div className="min-w-0">
+                    <div className="truncate text-slate-600">{file.name}</div>
+
+                    <div className="text-xs text-slate-400">
+                      {(file.size / 1024 / 1024).toFixed(2)} МБ
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFiles((prev) => prev.filter((_, i) => i !== index));
+                    }}
+                    className="
+                      shrink-0 text-lg text-slate-400
+                      transition hover:text-red-500
+                    "
+                    aria-label={`Удалить ${file.name}`}
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <p className="mt-2 text-xs text-slate-400">
+            До {MAX_FILES} файлов, не более 10 МБ каждый
+          </p>
+        </div>
 
         <Button
           variant="glass"

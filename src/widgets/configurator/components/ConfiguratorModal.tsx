@@ -2,18 +2,20 @@
 import { X } from 'lucide-react';
 import { Heading } from '@/shared';
 import { ContactForm } from '@/widgets/contact/ContactForm';
-import { PlatformId } from '@/widgets/configurator/types/configurator.types';
+import { ConfigValues, PlatformId } from '@/widgets/configurator/types/configurator.types';
 
 export function ConfiguratorModal({
   platform,
   open,
   onClose,
   setSubmitted,
+  values,
 }: {
   platform?: PlatformId | null;
   open: boolean;
-  onClose: () => void;
+  onClose: (open: boolean) => void;
   setSubmitted: (open: boolean) => void;
+  values: ConfigValues;
 }) {
   if (!open) {
     return null;
@@ -31,7 +33,7 @@ export function ConfiguratorModal({
       "
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) {
-          onClose();
+          onClose(true);
         }
       }}
     >
@@ -52,7 +54,7 @@ export function ConfiguratorModal({
       >
         <button
           type="button"
-          onClick={onClose}
+          onClick={() => onClose(true)}
           aria-label="Закрыть"
           className="
             absolute right-4 top-4
@@ -77,7 +79,13 @@ export function ConfiguratorModal({
           </p>
         </div>
 
-        <ContactForm setSubmitted={setSubmitted} platform={platform} type={'config'} />
+        <ContactForm
+          setSubmitted={setSubmitted}
+          platform={platform}
+          type={'config'}
+          values={values}
+          onClose={onClose}
+        />
       </div>
     </div>
   );

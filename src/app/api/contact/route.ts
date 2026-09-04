@@ -15,6 +15,9 @@ import { ConfigValues, ConfigBlock } from '@/widgets/configurator/types/configur
 import { SERVER_SCHEMA } from '@/widgets/configurator/data/server-schema';
 import { STORAGE_SCHEMA } from '@/widgets/configurator/data/storage-schema';
 
+// const MAX_FILES = 6;
+// const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+
 function getConfiguratorSchema(platform: PlatformId | null): ConfigBlock[] {
   if (platform === 'servers') {
     return SERVER_SCHEMA;
@@ -43,6 +46,8 @@ export async function POST(req: Request) {
     const fileValue = formData.get('file');
     const file = fileValue instanceof File && fileValue.size > 0 ? fileValue : null;
 
+    const files = formData.getAll('files') as File[];
+    console.log('FILES:', files);
     // =====================================================
     // RESULTS
     // =====================================================
@@ -115,49 +120,126 @@ export async function POST(req: Request) {
             phone,
           });
 
-      let response: Response;
+      let response: Response | null = null;
 
-      // ---------------------------------------------------
-      // FILE
-      // ---------------------------------------------------
-      if (file) {
-        const telegramFormData = new FormData();
+      if (files.length > 0) {
+        for (const [index, file] of files.entries()) {
+          const telegramFormData = new FormData();
 
-        telegramFormData.append('chat_id', chatId);
-        telegramFormData.append('caption', telegramMessage);
-        telegramFormData.append('parse_mode', 'HTML');
-        telegramFormData.append('document', file, file.name);
+          telegramFormData.append('chat_id', chatId);
 
-        response = await fetch(`https://api.telegram.org/bot${botToken}/sendDocument`, {
-          method: 'POST',
-          body: telegramFormData,
-        });
-      }
+          if (index === 0) {
+            telegramFormData.append('caption', telegramMessage);
+            telegramFormData.append('parse_mode', 'HTML');
+          }
 
-      // ---------------------------------------------------
-      // WITHOUT FILE
-      // ---------------------------------------------------
-      else {
+          telegramFormData.append('document', file, file.name);
+
+          response = await fetch(`https://api.telegram.org/bot${botToken}/sendDocument`, {
+            method: 'POST',
+            body: telegramFormData,
+          });
+
+          const result = await response.json();
+
+          if (!response.ok) {
+            throw new Error(result.description || `Ошибка отправки файла ${file.name}`);
+          }
+        }
+      } else {
         response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+          },
           body: JSON.stringify({
             chat_id: chatId,
             text: telegramMessage,
             parse_mode: 'HTML',
           }),
         });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.description || 'Telegram error');
+        }
       }
 
-      const result = await response.json();
+      // let response: Response | null = null;
 
-      if (!response.ok) {
-        throw new Error(result.description || 'Telegram error');
-      }
+      // ---------------------------------------------------
+      // FILE
+      // ---------------------------------------------------
+      // if (file) {
+      //   const telegramFormData = new FormData();
+      //
+      //   telegramFormData.append('chat_id', chatId);
+      //   telegramFormData.append('caption', telegramMessage);
+      //   telegramFormData.append('parse_mode', 'HTML');
+      //   // telegramFormData.append('document', file, file.name);
+      //   telegramFormData.append('document', file, file.name);
+      //
+      //   response = await fetch(`https://api.telegram.org/bot${botToken}/sendDocument`, {
+      //     method: 'POST',
+      //     body: telegramFormData,
+      //   });
+      // }
 
-      results.telegram = true;
+      // if (files.length > 0) {
+      //   for (const [index, file] of files.entries()) {
+      //     const telegramFormData = new FormData();
+      //
+      //     telegramFormData.append('chat_id', chatId);
+      //
+      //     // сообщение только у первого файла
+      //     if (index === 0) {
+      //       telegramFormData.append('caption', telegramMessage);
+      //       telegramFormData.append('parse_mode', 'HTML');
+      //     }
+      //
+      //     telegramFormData.append('document', file, file.name);
+      //
+      //     response = await fetch(
+      //       `https://api.telegram.org/bot${botToken}/sendDocument`,
+      //       {
+      //         method: 'POST',
+      //         body: telegramFormData,
+      //       }
+      //     );
+      //
+      //     if (!response.ok) {
+      //       console.error(
+      //         `Ошибка отправки файла ${file.name}:`,
+      //         await response.text()
+      //       );
+      //     }
+      //   }
 
-      console.log(isConfigurator ? 'Telegram CONFIGURATOR OK' : 'Telegram CONTACT OK');
+      // ---------------------------------------------------
+      // WITHOUT FILE
+      // ---------------------------------------------------
+      //   else {
+      //     response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      //       method: 'POST',
+      //       headers: { 'Content-Type': 'application/json' },
+      //       body: JSON.stringify({
+      //         chat_id: chatId,
+      //         text: telegramMessage,
+      //         parse_mode: 'HTML',
+      //       }),
+      //     });
+      //   }
+      //
+      //   const result = await response.json();
+      //
+      //   if (!response.ok) {
+      //     throw new Error(result.description || 'Telegram error');
+      //   }
+      //
+      //   results.telegram = true;
+      //
+      //   console.log(isConfigurator ? 'Telegram CONFIGURATOR OK' : 'Telegram CONTACT OK');
     } catch (error) {
       console.error('Telegram ERROR:', error);
     }
@@ -219,9 +301,16 @@ export async function POST(req: Request) {
       // ===================================================
       // ATTACHMENTS
       // ===================================================
-      const attachments = file
-        ? [{ filename: file.name, content: Buffer.from(await file.arrayBuffer()) }]
-        : [];
+      // const attachments = file
+      //   ? [{ filename: file.name, content: Buffer.from(await file.arrayBuffer()) }]
+      //   : [];
+
+      const attachments = await Promise.all(
+        files.map(async (file) => ({
+          filename: file.name,
+          content: Buffer.from(await file.arrayBuffer()),
+        })),
+      );
 
       // ===================================================
       // SEND ADMIN EMAIL
@@ -250,14 +339,15 @@ export async function POST(req: Request) {
               name,
               schema,
               values,
-              configuratorType: platform,
             })
           : createClientEmailHtml(name);
 
         await transporter.sendMail({
           from: `"Forte System" <${process.env.SMTP_USER}>`,
           to: email,
-          subject: isConfigurator ? 'Ваш запрос из конфигуратора получен' : 'Ваш запрос получен',
+          subject: isConfigurator
+            ? 'Ваш запрос из конфигуратора получен'
+            : 'Ваш запрос на обратную связь получен',
           html: clientEmailHtml,
         });
 

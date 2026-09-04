@@ -24,23 +24,11 @@ export function useConfigurator() {
   const [isOpen, setIsOpen] = useState(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
 
+  console.log(isOpen);
+
   useEffect(() => {
     const urlPlatform = searchParams.get('platform');
     const urlBrand = searchParams.get('brand');
-    const success = searchParams.get('success');
-
-    if (success) {
-      const savedConfig = loadConfig();
-
-      if (savedConfig) {
-        setPlatform(savedConfig.platform);
-        setBrand(savedConfig.brand);
-        setValues(savedConfig.values);
-      }
-
-      setStep(4);
-      return;
-    }
 
     if (!urlPlatform) {
       setPlatform(null);
@@ -158,55 +146,24 @@ export function useConfigurator() {
     }
   };
 
-  const STORAGE_KEY = 'configurator-config';
-
-  function saveConfig() {
-    try {
-      const config = {
-        platform,
-        brand,
-        values,
-      };
-
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
-    } catch (error) {
-      console.error('Не удалось сохранить конфигурацию:', error);
-    }
-  }
-
-  function loadConfig() {
-    try {
-      const data = localStorage.getItem(STORAGE_KEY);
-
-      if (!data) {
-        return null;
-      }
-
-      return JSON.parse(data);
-    } catch (error) {
-      console.error('Не удалось загрузить конфигурацию:', error);
-      return null;
-    }
-  }
-
   const onSubmit = () => {
     setIsOpen(true);
-    saveConfig();
   };
 
   const toggleOnOpen = () => {
     setIsOpen(!isOpen);
   };
 
+  const setClose = () => {
+    setIsOpen(false);
+  };
+
   const reset = () => {
-    setStep(1);
     setPlatform(null);
     setBrand(null);
     setValues({});
     setSidebarCollapsed(false);
-    setSubmitted(false);
-
-    router.push(pathname);
+    setIsOpen(false);
   };
 
   return {
@@ -229,13 +186,13 @@ export function useConfigurator() {
     setSubmitted,
 
     onSubmit,
-    loadConfig,
 
     selectPlatform,
     selectBrand,
     setValue,
 
     toggleOnOpen,
+    setClose,
 
     goBack,
     reset,

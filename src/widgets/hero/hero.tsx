@@ -14,7 +14,7 @@ export function Hero() {
         className="
         lg:py-0 md:py-0 pb-8 sm:py-0
         min-h-svh
-        -mt-20 sm:-mt-32
+        -mt-20 sm:-mt-32 md:-mt-[90px]
         flex flex-col
       "
       >

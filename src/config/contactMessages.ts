@@ -99,7 +99,7 @@ ${filledFields.join('\n')}
 <b>СООБЩЕНИЕ</b>
 ${message || '-'}
 
-<b>⚙️ Конфигурация</b>
+<b>⚙️ КОНФИГУРАЦИЯ</b>
 ${configMessage || 'Параметры не указаны.'}
 
 ━━━━━━━━━━━━━━━━━━
@@ -141,16 +141,19 @@ export const createAdminEmailHtml = ({
     /*margin:0 auto;*/
     background:#ffffff;
     border:1px solid #e5e7eb;
+    border-radius: 12px;
   ">
 
     <div style="
       padding:20px 24px;
+      background:#4c5261;
+      border-radius: 12px 12px 0 0;
       border-bottom:1px solid #e5e7eb;
     ">
       <div style="
         font-size:20px;
         font-weight:700;
-        color:#111827;
+        color:#ffffff;
       ">
         Новая заявка с сайта
       </div>
@@ -177,10 +180,7 @@ export const createAdminEmailHtml = ({
         <div><b>Email:</b> ${email || '—'}</div>
       </div>
 
-      <div style="
-        margin:18px 0;
-        border-top:1px solid #e5e7eb;
-      "></div>
+      <div style="margin:18px 0; border-top:1px solid #e5e7eb;"></div>
 
       <div style="
         margin-bottom:6px;
@@ -193,7 +193,7 @@ export const createAdminEmailHtml = ({
 
       <div style="
         font-size:13px;
-        line-height:1.6;
+        line-height:1.25;
         color:#374151;
         white-space:pre-line;
       ">
@@ -208,7 +208,7 @@ export const createAdminEmailHtml = ({
       font-size:11px;
       color:#9ca3af;
     ">
-      fortesystem.by · ${new Date().toLocaleString('ru-RU')}
+       <i>fortesystem.by · заявка создана ${new Date().toLocaleString('ru-RU')}</i>
     </div>
 
   </div>
@@ -268,11 +268,12 @@ export function createAdminConfiguratorEmail({
         <div style="margin:0 0 12px 0;">
           <div style="
             font-size:14px;
-            font-weight:700;
+            font-weight:600;
             color:#111827;
             margin-bottom:4px;
+            text-transform: uppercase;
           ">
-            ${emoji} ${block.title}
+            ${emoji} <span style="font-weight: 500; color:#111827">${block.title}</span>
           </div>
 
           <div style="
@@ -293,87 +294,62 @@ export function createAdminConfiguratorEmail({
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Новая заявка на конфигурацию</title>
+  <title>Новая заявка на конфигурацию ${configuratorType === 'servers' ? 'сервера' : 'СХД'}</title>
 </head>
 
-<body style="
-  margin:0;
-  padding:0;
-  background:#f4f5f7;
-  font-family:Arial, Helvetica, sans-serif;
-  color:#111827;
-">
+<body style="margin:0; padding:0; background:#f4f5f7; font-family:Arial, Helvetica, sans-serif; color:#111827;">
 
   <div style="
     max-width:680px;
-    margin:24px auto;
+    margin:24px;
     background:#ffffff;
     border:1px solid #e5e7eb;
+    border-radius: 12px;
   ">
 
     <div style="
       padding:20px 24px;
+      background:#4c5261;
+      border-radius: 12px 12px 0 0;
       border-bottom:1px solid #e5e7eb;
     ">
-      <img
-        src="https://fortesystem.by/full-logo.svg"
-        alt="Forte System"
-        width="150"
-        style="display:block;width:150px;height:auto;"
-      >
+      <div style="
+        font-size:20px;
+        font-weight:700;
+        color:#ffffff;
+      ">
+        Новая заявка с сайта
+      </div>
+
+      <div style="
+        margin-top:4px;
+        font-size:12px;
+        color:#9ca3af;
+      ">
+        Обратная связь
+      </div>
     </div>
 
-    <div style="padding:24px;">
-
-      <h1 style="
-        margin:0 0 6px;
-        font-size:20px;
-        line-height:1.3;
-        color:#111827;
-      ">
-        Новая заявка на конфигурацию
-      </h1>
+    <div style="padding:20px 24px;">
 
       <div style="
-        margin-bottom:20px;
-        font-size:13px;
-        color:#6b7280;
+        font-size:14px;
+        line-height:1.7;
+        color:#374151;
       ">
-        ${configuratorType}
+        <div><b>Имя:</b> ${name}</div>
+        <div><b>Компания:</b> ${company || '—'}</div>
+        <div><b>Телефон:</b> ${phone}</div>
+        <div><b>Email:</b> ${email || '—'}</div>
       </div>
 
-      <div style="
-        padding:14px 16px;
-        background:#f8fafc;
-        border:1px solid #e5e7eb;
-        margin-bottom:22px;
-      ">
-
-        <div style="
-          font-size:14px;
-          font-weight:700;
-          margin-bottom:8px;
-        ">
-          Контактные данные
-        </div>
-
-        <div style="
-          font-size:13px;
-          line-height:1.6;
-          color:#374151;
-        ">
-          <b>Имя:</b> ${name}<br>
-          <b>Компания:</b> ${company || '—'}<br>
-          <b>Телефон:</b> ${phone}<br>
-          <b>Email:</b> ${email || '—'}
-        </div>
-
-      </div>
+      <div style="margin:18px 0; border-top:1px solid #e5e7eb;"></div>
 
       <div style="
-        font-size:15px;
+        margin-bottom:16px;
+        font-size:14px;
         font-weight:700;
-        margin-bottom:14px;
+        color:#111827;
       ">
         Конфигурация
       </div>
@@ -381,10 +357,7 @@ export function createAdminConfiguratorEmail({
       ${
         configHtml ||
         `
-        <div style="
-          font-size:13px;
-          color:#6b7280;
-        ">
+        <div style="font-size:13px; color:#6b7280">
           Параметры конфигурации не заполнены.
         </div>
       `
@@ -393,24 +366,9 @@ export function createAdminConfiguratorEmail({
       ${
         message
           ? `
-            <div style="
-              margin-top:18px;
-              padding-top:16px;
-              border-top:1px solid #e5e7eb;
-            ">
-              <div style="
-                font-size:14px;
-                font-weight:700;
-                margin-bottom:6px;
-              ">
-                💬 Комментарий
-              </div>
-
-              <div style="
-                font-size:13px;
-                line-height:1.5;
-                color:#374151;
-              ">
+            <div style="margin-top:18px; padding-top:16px; border-top:1px solid #e5e7eb;">
+              <div style=" font-size:14px; font-weight:700; margin-bottom:6px;">Доп. инфа</div>
+              <div style="font-size:13px; line-height:1.5; color:#374151;">
                 ${message}
               </div>
             </div>
@@ -420,67 +378,37 @@ export function createAdminConfiguratorEmail({
 
     </div>
 
-    <div style="
-      padding:14px 24px;
-      border-top:1px solid #e5e7eb;
-      font-size:11px;
-      color:#9ca3af;
-    ">
-      fortesystem.by · заявка создана ${new Date().toLocaleString('ru-RU')}
+    <div style=" padding:14px 24px; border-top:1px solid #e5e7eb; font-size:11px; color:#9ca3af;">
+      <i>fortesystem.by · заявка создана ${new Date().toLocaleString('ru-RU')}</i>
     </div>
-
   </div>
-
 </body>
 </html>
 `;
 }
 
-//старое клиенту с главной
-// export const createClientEmailHtml = (name: string) => `
-//   <div style="font-family:Arial,sans-serif">
-//     <h2>Заявка получена</h2>
-//
-//     <p>
-//       Здравствуйте, ${name}!
-//     </p>
-//
-//     <p>
-//       Спасибо за обращение в Forte System.
-//       Мы получили ваш запрос и передали его специалисту.
-//     </p>
-//
-//     <p>
-//       Мы свяжемся с вами в ближайшее время.
-//     </p>
-//
-//     <p>
-//       Forte System · fortesystem.by
-//     </p>
-//   </div>
-// `;
-
-//новое клиенту с главной
+// клиенту с главной
 export const createClientEmailHtml = (name: string) => `
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
+  <title>Запрос на обратную связь</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     body {
-  margin: 0;
-  padding: 0;
-  background: #ffffff;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #172033;
-}
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #172033;
+    }
 
-.email-wrapper {
-  max-width: 620px;
-  margin: 0 auto;
-}
+    .email-wrapper {
+      max-width: 620px;
+      margin: 0 auto;
+    }
 
 .email-header {
   padding: 28px 25px;
@@ -491,17 +419,17 @@ export const createClientEmailHtml = (name: string) => `
 
 .logo {
   display: block;
-  height: 50px;
-  max-width: 220px;
-  margin-bottom: 18px;
+  height: 53px;
+  max-width: 195px;
 }
 
 .contacts {
-  color: #ffffff;
+  color: #ffffff!important;
   font-size: 13px;
   line-height: 1.6;
   letter-spacing: 1.5px;
   text-align: end;
+  text-decoration: none;
 }
 
 .email-content {
@@ -513,7 +441,7 @@ export const createClientEmailHtml = (name: string) => `
 
 .title {
   margin: 0 0 16px;
-  font-size: 28px;
+  font-size: 24px;
   line-height: 1.2;
   font-weight: 700;
   color: #172033;
@@ -584,14 +512,6 @@ export const createClientEmailHtml = (name: string) => `
 </head>
 <body>
   <div class="email-wrapper">
-<!--    <div class="email-header">-->
-<!--      <img src="https://fortesystem.by/full-logo.png" alt="Форте Систем" class="logo">-->
-<!--      <div class="contacts">-->
-<!--        <div class="contacts">+375 44 719-18-24</div>-->
-<!--        <div class="contacts">sales@fortesystem.by</div>-->
-<!--      </div>-->
-<!--    </div>-->
-
     <table width="100%" cellpadding="0" cellspacing="0" border="0" class="email-header">
       <tr>
         <td align="left" valign="middle">
@@ -599,8 +519,17 @@ export const createClientEmailHtml = (name: string) => `
         </td>
 
         <td align="right" valign="middle">
-          <div class="contacts">+375 44 719-18-24</div>
-          <div class="contacts">sales@fortesystem.by</div>
+          <div style="font-size:13px; line-height:1.6; letter-spacing:1.5px;">
+            <a href="tel:+375447191824" style="color:#ffffff !important; text-decoration:none;">
+              +375 44 719-18-24
+            </a>
+          </div>
+
+          <div style="font-size:13px; line-height:1.6; letter-spacing:1.5px;">
+            <a href="mailto:sales@fortesystem.by" style="color:#ffffff !important; text-decoration:none;">
+              sales@fortesystem.by
+            </a>
+          </div>
         </td>
       </tr>
     </table>
@@ -608,7 +537,7 @@ export const createClientEmailHtml = (name: string) => `
     <div class="email-content">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td valign="middle">
+          <td valign="middle" style="width: 36px">
             <div class="success-icon">✓</div>
           </td>
           <td valign="middle">
@@ -616,36 +545,31 @@ export const createClientEmailHtml = (name: string) => `
           </td>
         </tr>
       </table>
-<!--      <div class="success-icon">✓</div>-->
-<!--      <h1 class="title">Заявка получена</h1>-->
+      <br/>
       <p class="text">Здравствуйте, <i>${name}</i>!</p>
       <p class="text">
-        Спасибо за обращение в <b>Forte System</b>.Мы получили ваш запрос и передали его специалисту.
+        Спасибо за обращение в <b>Forte System</b>.Мы получили Ваш запрос и передали его специалисту.
       </p>
-      <p class="text">Мы свяжемся с вами в ближайшее время.</p>
-      <div class="note">Если вам потребуется дополнить информацию, просто ответьте на это письмо.</div>
+      <p class="text">Мы свяжемся с Вами в ближайшее время.</p>
+      <div class="note">Если Вам потребуется дополнить информацию, просто ответьте на это письмо.</div>
       <div class="disclaimer">Если это письмо пришло Вам по ошибке, не отвечайте на него.</div>
     </div>
 
-    <div class="email-footer">
-      ООО Форте Систем · fortesystem.by
-    </div>
+    <div class="email-footer">ООО Форте Систем · fortesystem.by</div>
   </div>
 </body>
 </html>
-  `;
+`;
 
-//новое клиенту из конфигуратора
+// клиенту с конфигурации
 export function createClientConfiguratorEmail({
   name,
   schema,
   values,
-  configuratorType,
 }: {
   name: string;
   schema: ConfigBlock[];
   values: Record<string, unknown>;
-  configuratorType: PlatformId | null;
 }) {
   const configHtml = schema
     .map((block) => {
@@ -688,7 +612,7 @@ export function createClientConfiguratorEmail({
             margin-bottom:3px;
             font-size:13px;
             font-weight:700;
-            color:#111827;
+            color:#b1b1b1;
           ">
             ${block.title}
           </div>
@@ -709,60 +633,126 @@ export function createClientConfiguratorEmail({
 
   return `
 <!DOCTYPE html>
-<html lang="ru>
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <title>Ваш запрос получен — Forte System</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #172033;
+    }
+    .email-header {
+      padding: 28px 25px;
+      background: #0052CC;
+      color: #ffffff;
+      border-radius: 16px 16px 0 0;
+    }
+    .logo {
+      display: block;
+      height: 53px;
+      max-width: 195px;
+    }
+    .text {
+      margin: 0 0 16px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #3e434c;
+    }
+    .title {
+      margin: 0 0 16px;
+      font-size: 24px;
+      line-height: 1.2;
+      font-weight: 700;
+      color: #172033;
+    }
+
+    .success-icon {
+      margin: 0 0 8px;
+      font-size: 32px;
+      line-height: 1;
+      color: #0052CC;
+    }
+    .text {
+      margin: 0 0 16px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #3e434c;
+    }
+
+      @media only screen and (max-width: 640px) {
+      .email-wrapper {
+        width: 100% !important;
+      }
+
+      .email-header, .email-content {
+        border-radius: 0;
+      }
+
+      .email-header {
+        padding: 24px 20px;
+      }
+
+      .email-content {
+        padding: 24px 20px 20px;
+      }
+
+      .title {
+        font-size: 24px;
+      }
+    }
+  </style>
 </head>
 
-<body style="
-  margin:0;
-  padding:0;
-  background:#f4f5f7;
-  font-family:Arial, Helvetica, sans-serif;
-  color:#111827;
-">
+<body>
+  <div style="max-width:620px; margin:24px auto; background:#ffffff">
 
-  <div style="
-    max-width:620px;
-    margin:24px auto;
-    background:#ffffff;
-    border:1px solid #e5e7eb;
-  ">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" class="email-header">
+      <tr>
+        <td align="left" valign="middle">
+          <img src="https://fortesystem.by/full-logo.png" alt="Форте Систем" class="logo">
+        </td>
 
-    <div style="
-      padding:20px 24px;
-      border-bottom:1px solid #e5e7eb;
-    ">
-      <img
-        src="https://fortesystem.by/full-logo.svg"
-        alt="Forte System"
-        width="150"
-        style="display:block;width:150px;height:auto;"
-      >
-    </div>
+        <td align="right" valign="middle">
+          <div style="font-size:13px; line-height:1.6; letter-spacing:1.5px;">
+            <a href="tel:+375447191824" style="color:#ffffff !important; text-decoration:none;">
+              +375 44 719-18-24
+            </a>
+          </div>
 
-    <div style="padding:26px 24px;">
+          <div style="font-size:13px; line-height:1.6; letter-spacing:1.5px;">
+            <a href="mailto:sales@fortesystem.by" style="color:#ffffff !important; text-decoration:none;">
+              sales@fortesystem.by
+            </a>
+          </div>
+        </td>
+      </tr>
+    </table>
 
-      <h1 style="
-        margin:0 0 12px;
-        font-size:20px;
-        line-height:1.35;
-        color:#111827;
-      ">
-        Спасибо за ваш запрос, ${name}!
-      </h1>
+    <div style="padding:26px 25px 23px; border: 1px solid #e5e9f0;border-top: 0;border-radius: 0 0 16px 16px; margin-bottom: 16px">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td valign="middle" style="width: 36px">
+            <div class="success-icon">✓</div>
+          </td>
+          <td valign="middle">
+            <h1 class="title" style="margin: 0;">Заявка получена</h1>
+          </td>
+        </tr>
+      </table>
 
-      <p style="
-        margin:0 0 20px;
-        font-size:14px;
-        line-height:1.6;
-        color:#374151;
-      ">
-        Мы получили вашу заявку на
-        <b>${configuratorType}</b>.
+      <p class="text">Здравствуйте, <i>${name}</i>!</p>
+
+      <p style="margin:0 0 20px; font-size:14px; line-height:1.6; color:#374151;">
+        Мы получили Вашу заявку.
         Наш специалист изучит параметры конфигурации
         и свяжется с вами для уточнения деталей.
+      </p>
+      <p class="text">
+        Спасибо за обращение в <b>Forte System</b>
       </p>
 
       <div style="
@@ -782,46 +772,44 @@ export function createClientConfiguratorEmail({
 
         ${
           configHtml ||
-          `
-          <div style="
-            font-size:13px;
-            color:#6b7280;
-          ">
-            Дополнительные параметры не указаны.
-          </div>
-        `
+          `<div style="font-size:13px;color:#6b7280;">
+          Дополнительные параметры не указаны.
+        </div>`
         }
 
       </div>
 
       <div style="
-        margin-top:22px;
-        padding:14px 16px;
-        background:#f8fafc;
-        border:1px solid #e5e7eb;
-        font-size:13px;
-        line-height:1.6;
-        color:#374151;
+        margin-top: 28px;
+        padding: 18px;
+        background: #f5f7fa;
+        border-radius: 10px;
+        color: #3e434c;
+        font-size: 14px;
+        line-height: 1.6;
       ">
         Если вы хотите дополнить заявку или изменить
         параметры, просто ответьте на это письмо.
       </div>
-
+      <div style="
+        margin-top: 40px;
+        color: #ababab;
+        font-size: 12px;
+        line-height: 1.5;
+        text-align: center;
+      ">
+        Если это письмо пришло Вам по ошибке, не отвечайте на него.</div>
     </div>
 
     <div style="
-      padding:16px 24px;
-      border-top:1px solid #e5e7eb;
-      font-size:12px;
-      line-height:1.5;
-      color:#9ca3af;
+      padding: 20px;
+      color: #9aa3b1;
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
     ">
-      <div>
-        Forte System
-      </div>
-      <div>
-        +375 44 719-18-24 · sales@fortesystem.by
-      </div>
+      <div>Forte System</div>
+      <div>+375 44 719-18-24 · sales@fortesystem.by</div>
     </div>
 
   </div>
@@ -830,81 +818,3 @@ export function createClientConfiguratorEmail({
 </html>
 `;
 }
-
-// export const clientEmailHtml = ({name}: { name: string }) => `
-//    <div style="max-width:620px; margin:0 auto; font-family:Mono,sans-serif; color:#172033;">
-//
-//         <div style="display: flex, padding:28px 25px; background:#0052CC; color:#fff; border-radius:16px 16px 0 0;">
-//           <div style="font-size:13px; letter-spacing:1.5px;">
-//             FORTE SYSTEM
-//           </div>
-//         </div>
-//
-//         <div style="
-//           padding:26px 25px 40px;
-//           border:1px solid #e5e9f0;
-//           border-top:0;
-//           border-radius:0 0 16px 16px;
-//         ">
-//
-//           <div style="font-size:32px; color:#0052CC; margin-bottom:20px;
-//           ">
-//             ✓
-//           </div>
-//
-//           <h1 style=" margin:0 0 16px; font-size:28px;">
-//             Заявка получена
-//           </h1>
-//
-//           <p style="
-//             font-size:16px;
-//             line-height:1.6;
-//             color:#657083;
-//           ">
-//             Здравствуйте, ${name}!
-//           </p>
-//
-//           <p style="
-//             font-size:16px;
-//             line-height:1.6;
-//             color:#657083;
-//           ">
-//             Спасибо за обращение в Forte System.
-//             Мы получили Ваш запрос и передали его
-//             специалисту.
-//           </p>
-//
-//           <p style="
-//             font-size:16px;
-//             line-height:1.6;
-//             color:#657083;
-//           ">
-//             Мы свяжемся с Вами в ближайшее время.
-//           </p>
-//
-//           <div style="
-//             margin-top:28px;
-//             padding:18px;
-//             background:#f5f7fa;
-//             border-radius:10px;
-//             color:#657083;
-//             font-size:14px;
-//             line-height:1.6;
-//           ">
-//             Если вам потребуется дополнить информацию,
-//             просто ответьте на это письмо.
-//           </div>
-//
-//         </div>
-//
-//         <div style="
-//           padding:20px;
-//           color:#9aa3b1;
-//           font-size:12px;
-//           text-align:center;
-//         ">
-//           ООО Форте Систем · fortesystem.by
-//         </div>
-//
-//       </div>
-//     `;

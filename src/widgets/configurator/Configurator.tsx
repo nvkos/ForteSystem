@@ -14,13 +14,12 @@ export function Configurator() {
   const configurator = useConfigurator();
   const searchParams = useSearchParams();
   const urlBrand = searchParams.get('brand');
-  const urlSuccess = searchParams.get('success');
   const { step, submitted } = configurator;
 
   return (
     <div className={'relative'}>
       <div
-        className={`hero-background_mobile ${urlBrand && !urlSuccess ? 'h-[calc(100%_+_90px)]' : 'h-[calc(100svh_+_0px)]'} -top-[90px]`}
+        className={`hero-background_mobile ${urlBrand && !submitted ? 'h-[calc(100%_+_90px)]' : 'h-[calc(100svh_+_0px)]'} -top-[90px]`}
       />
 
       <Container className={'pt-6 pb-25 md:pt-12 md:pb-17 relative'}>
@@ -68,8 +67,9 @@ export function Configurator() {
         <ConfiguratorModal
           platform={configurator.platform}
           open={configurator.isOpen}
+          values={configurator.values}
           setSubmitted={configurator.setSubmitted}
-          onClose={configurator.toggleOnOpen}
+          onClose={configurator.setClose}
         />
       )}
     </div>
